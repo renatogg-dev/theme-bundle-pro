@@ -93,7 +93,7 @@ export function ThemeCustomizer({
   } = generator;
 
   return (
-    <Card className={cn("overflow-hidden", className)}>
+    <Card className={className}>
       {/* Header */}
       <CardHeader
         className="cursor-pointer select-none"
@@ -133,7 +133,7 @@ export function ThemeCustomizer({
 
       {/* Collapsible Content */}
       {!isCollapsed && (
-        <CardContent className="space-y-6">
+        <CardContent className="space-y-6 pb-6">
           {/* Color Sections */}
           {COLOR_SECTIONS.map((section, sectionIndex) => (
             <div key={section.title}>
