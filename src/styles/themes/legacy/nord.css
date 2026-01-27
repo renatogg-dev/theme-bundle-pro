@@ -1,0 +1,121 @@
+/*
+ * NORD THEME
+ * Original: https://nordtheme.com
+ * An arctic, north-bluish color palette
+ * 
+ * Core Palette:
+ * - Polar Night: #2e3440 to #4c566a
+ * - Snow Storm: #d8dee9 to #eceff4
+ * - Frost: #8fbcbb, #88c0d0, #81a1c1, #5e81ac
+ * - Aurora: #bf616a, #d08770, #ebcb8b, #a3be8c, #b48ead
+ */
+
+/* ========================================
+   NORD LIGHT (Snow Storm)
+   ======================================== */
+[data-theme="nord"] {
+  /* Surfaces */
+  --background: 219 28% 95%;        /* #eceff4 */
+  --foreground: 220 16% 22%;        /* #2e3440 */
+  --card: 219 28% 97%;
+  --card-foreground: 220 16% 22%;
+  --popover: 219 28% 97%;
+  --popover-foreground: 220 16% 22%;
+
+  /* Primary - Frost Blue */
+  --primary: 213 32% 45%;           /* #5e81ac - darker for light */
+  --primary-foreground: 0 0% 100%;
+
+  /* Secondary - Aurora Purple */
+  --secondary: 311 20% 55%;         /* #b48ead */
+  --secondary-foreground: 0 0% 100%;
+
+  /* Muted */
+  --muted: 219 20% 90%;             /* #d8dee9 */
+  --muted-foreground: 220 10% 45%;
+
+  /* Accent - Frost Cyan */
+  --accent: 179 25% 55%;            /* #8fbcbb */
+  --accent-foreground: 220 16% 15%;
+
+  /* Destructive - Aurora Red */
+  --destructive: 354 42% 50%;       /* #bf616a */
+  --destructive-foreground: 0 0% 100%;
+
+  /* Borders & Inputs */
+  --border: 219 15% 82%;
+  --input: 219 15% 82%;
+  --ring: 213 32% 45%;
+
+  /* Sidebar */
+  --sidebar-background: 219 25% 92%;
+  --sidebar-foreground: 220 16% 30%;
+  --sidebar-primary: 213 32% 45%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 219 20% 88%;
+  --sidebar-accent-foreground: 220 16% 22%;
+  --sidebar-border: 219 15% 80%;
+  --sidebar-ring: 213 32% 45%;
+
+  /* Chart Colors - Aurora */
+  --chart-1: 213 32% 52%;           /* Blue */
+  --chart-2: 92 28% 55%;            /* Green */
+  --chart-3: 40 71% 65%;            /* Yellow */
+  --chart-4: 14 51% 55%;            /* Orange */
+  --chart-5: 311 20% 55%;           /* Purple */
+}
+
+/* ========================================
+   NORD DARK (Polar Night)
+   ======================================== */
+.dark[data-theme="nord"] {
+  /* Surfaces */
+  --background: 220 16% 22%;        /* #2e3440 */
+  --foreground: 219 28% 88%;        /* #d8dee9 */
+  --card: 220 17% 27%;              /* #3b4252 */
+  --card-foreground: 219 28% 88%;
+  --popover: 220 17% 27%;
+  --popover-foreground: 219 28% 88%;
+
+  /* Primary - Frost Cyan */
+  --primary: 193 43% 67%;           /* #88c0d0 */
+  --primary-foreground: 220 16% 15%;
+
+  /* Secondary - Aurora Purple */
+  --secondary: 311 20% 63%;         /* #b48ead */
+  --secondary-foreground: 220 16% 15%;
+
+  /* Muted */
+  --muted: 220 16% 32%;             /* #434c5e */
+  --muted-foreground: 219 20% 65%;
+
+  /* Accent - Frost Teal */
+  --accent: 179 25% 65%;            /* #8fbcbb */
+  --accent-foreground: 220 16% 15%;
+
+  /* Destructive - Aurora Red */
+  --destructive: 354 42% 56%;       /* #bf616a */
+  --destructive-foreground: 0 0% 100%;
+
+  /* Borders & Inputs */
+  --border: 220 16% 36%;            /* #4c566a */
+  --input: 220 16% 36%;
+  --ring: 193 43% 67%;
+
+  /* Sidebar */
+  --sidebar-background: 220 16% 20%;
+  --sidebar-foreground: 219 25% 80%;
+  --sidebar-primary: 193 43% 67%;
+  --sidebar-primary-foreground: 220 16% 15%;
+  --sidebar-accent: 220 17% 25%;
+  --sidebar-accent-foreground: 219 28% 88%;
+  --sidebar-border: 220 16% 32%;
+  --sidebar-ring: 193 43% 67%;
+
+  /* Chart Colors - Aurora bright */
+  --chart-1: 193 43% 67%;           /* Cyan */
+  --chart-2: 92 28% 65%;            /* Green */
+  --chart-3: 40 71% 73%;            /* Yellow */
+  --chart-4: 14 51% 63%;            /* Orange */
+  --chart-5: 311 20% 63%;           /* Purple */
+}

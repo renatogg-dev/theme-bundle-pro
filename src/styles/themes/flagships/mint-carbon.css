@@ -1,0 +1,120 @@
+/*
+ * MINT CARBON THEME
+ * The "Hacker Minimalist" aesthetic refined for corporate dashboards
+ * Matte charcoal backgrounds with elegant mint green terminals
+ * 
+ * Core Palette:
+ * - Background: #181a1a (dark) / #f5f7f6 (light)
+ * - Primary: #2eb872 (mint green)
+ * - Accent: #1a5c3e (forest)
+ */
+
+/* ========================================
+   MINT CARBON LIGHT
+   ======================================== */
+[data-theme="mint-carbon"] {
+  /* Surfaces */
+  --background: 150 10% 97%;        /* #f5f7f6 - off-white with green tint */
+  --foreground: 180 5% 15%;         /* #252828 */
+  --card: 150 12% 99%;
+  --card-foreground: 180 5% 15%;
+  --popover: 150 12% 99%;
+  --popover-foreground: 180 5% 15%;
+
+  /* Primary - Mint Green (darker for light mode) */
+  --primary: 150 60% 35%;           /* #1f8a55 */
+  --primary-foreground: 0 0% 100%;
+
+  /* Secondary - Forest */
+  --secondary: 150 50% 25%;         /* #1a5c3e */
+  --secondary-foreground: 0 0% 100%;
+
+  /* Muted */
+  --muted: 150 8% 92%;
+  --muted-foreground: 180 5% 45%;
+
+  /* Accent - Teal */
+  --accent: 170 50% 40%;            /* #339988 */
+  --accent-foreground: 0 0% 100%;
+
+  /* Destructive */
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 100%;
+
+  /* Borders & Inputs */
+  --border: 150 10% 85%;
+  --input: 150 10% 85%;
+  --ring: 150 60% 35%;
+
+  /* Sidebar */
+  --sidebar-background: 150 10% 95%;
+  --sidebar-foreground: 180 5% 25%;
+  --sidebar-primary: 150 60% 35%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 150 10% 90%;
+  --sidebar-accent-foreground: 180 5% 15%;
+  --sidebar-border: 150 10% 82%;
+  --sidebar-ring: 150 60% 35%;
+
+  /* Chart Colors */
+  --chart-1: 150 60% 40%;           /* Mint */
+  --chart-2: 170 50% 45%;           /* Teal */
+  --chart-3: 200 60% 50%;           /* Blue */
+  --chart-4: 130 50% 45%;           /* Lime */
+  --chart-5: 180 40% 35%;           /* Cyan-gray */
+}
+
+/* ========================================
+   MINT CARBON DARK
+   ======================================== */
+.dark[data-theme="mint-carbon"] {
+  /* Surfaces */
+  --background: 180 5% 10%;         /* #181a1a - matte charcoal */
+  --foreground: 150 5% 90%;         /* #e3e8e5 */
+  --card: 180 5% 13%;               /* #1f2222 */
+  --card-foreground: 150 5% 90%;
+  --popover: 180 5% 13%;
+  --popover-foreground: 150 5% 90%;
+
+  /* Primary - Mint Green */
+  --primary: 150 60% 45%;           /* #2eb872 */
+  --primary-foreground: 180 5% 5%;
+
+  /* Secondary - Forest Dark */
+  --secondary: 150 40% 30%;         /* #2d5c45 */
+  --secondary-foreground: 150 5% 90%;
+
+  /* Muted */
+  --muted: 180 5% 16%;
+  --muted-foreground: 150 5% 60%;
+
+  /* Accent - Bright Teal */
+  --accent: 170 60% 50%;            /* #26c9a8 */
+  --accent-foreground: 180 5% 5%;
+
+  /* Destructive */
+  --destructive: 0 70% 50%;
+  --destructive-foreground: 0 0% 100%;
+
+  /* Borders & Inputs */
+  --border: 180 5% 20%;
+  --input: 180 5% 20%;
+  --ring: 150 60% 45%;
+
+  /* Sidebar */
+  --sidebar-background: 180 5% 8%;
+  --sidebar-foreground: 150 5% 80%;
+  --sidebar-primary: 150 60% 45%;
+  --sidebar-primary-foreground: 180 5% 5%;
+  --sidebar-accent: 180 5% 14%;
+  --sidebar-accent-foreground: 150 5% 90%;
+  --sidebar-border: 180 5% 18%;
+  --sidebar-ring: 150 60% 45%;
+
+  /* Chart Colors - Terminal greens */
+  --chart-1: 150 60% 45%;           /* Mint */
+  --chart-2: 170 60% 50%;           /* Teal */
+  --chart-3: 130 70% 55%;           /* Lime */
+  --chart-4: 180 50% 45%;           /* Cyan */
+  --chart-5: 150 40% 35%;           /* Forest */
+}

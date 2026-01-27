@@ -1,0 +1,120 @@
+/*
+ * DEEP SPACE THEME
+ * A "High-Fidelity" evolution of classic night themes (Tokyo Night/Dracula)
+ * Focus: Deep void backgrounds with neon cyan accents
+ * 
+ * Core Palette:
+ * - Background: #0f1117 (dark) / #f0f4f8 (light)
+ * - Primary: #00d4ff (cyan neon)
+ * - Accent: #a855f7 (violet glow)
+ */
+
+/* ========================================
+   DEEP SPACE LIGHT
+   ======================================== */
+[data-theme="deep-space"] {
+  /* Surfaces */
+  --background: 210 25% 96%;        /* #f0f4f8 - slate light */
+  --foreground: 230 15% 15%;        /* #1f2937 */
+  --card: 210 30% 98%;
+  --card-foreground: 230 15% 15%;
+  --popover: 210 30% 98%;
+  --popover-foreground: 230 15% 15%;
+
+  /* Primary - Cyan Neon (darker for light mode) */
+  --primary: 190 100% 40%;          /* #00a3cc */
+  --primary-foreground: 0 0% 100%;
+
+  /* Secondary - Deep blue */
+  --secondary: 230 60% 50%;         /* #3b5998 */
+  --secondary-foreground: 0 0% 100%;
+
+  /* Muted */
+  --muted: 210 20% 92%;
+  --muted-foreground: 230 10% 45%;
+
+  /* Accent - Violet */
+  --accent: 265 85% 55%;            /* #8b5cf6 */
+  --accent-foreground: 0 0% 100%;
+
+  /* Destructive */
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 100%;
+
+  /* Borders & Inputs */
+  --border: 210 20% 85%;
+  --input: 210 20% 85%;
+  --ring: 190 100% 40%;
+
+  /* Sidebar */
+  --sidebar-background: 210 25% 94%;
+  --sidebar-foreground: 230 15% 25%;
+  --sidebar-primary: 190 100% 40%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 210 25% 88%;
+  --sidebar-accent-foreground: 230 15% 15%;
+  --sidebar-border: 210 20% 82%;
+  --sidebar-ring: 190 100% 40%;
+
+  /* Chart Colors */
+  --chart-1: 190 100% 45%;          /* Cyan */
+  --chart-2: 265 85% 60%;           /* Violet */
+  --chart-3: 160 70% 45%;           /* Teal */
+  --chart-4: 320 80% 55%;           /* Magenta */
+  --chart-5: 45 90% 50%;            /* Gold */
+}
+
+/* ========================================
+   DEEP SPACE DARK
+   ======================================== */
+.dark[data-theme="deep-space"] {
+  /* Surfaces */
+  --background: 230 15% 8%;         /* #0f1117 - void */
+  --foreground: 220 15% 85%;        /* #d1d5e0 */
+  --card: 230 15% 11%;              /* #181c25 */
+  --card-foreground: 220 15% 85%;
+  --popover: 230 15% 11%;
+  --popover-foreground: 220 15% 85%;
+
+  /* Primary - Cyan Neon (brighter for dark mode) */
+  --primary: 190 95% 55%;           /* #00d4ff */
+  --primary-foreground: 230 15% 8%;
+
+  /* Secondary - Electric blue */
+  --secondary: 220 90% 60%;         /* #4a90ff */
+  --secondary-foreground: 230 15% 8%;
+
+  /* Muted */
+  --muted: 230 15% 15%;
+  --muted-foreground: 220 10% 55%;
+
+  /* Accent - Violet glow */
+  --accent: 265 85% 65%;            /* #a855f7 */
+  --accent-foreground: 230 15% 8%;
+
+  /* Destructive */
+  --destructive: 0 85% 55%;
+  --destructive-foreground: 0 0% 100%;
+
+  /* Borders & Inputs */
+  --border: 230 20% 20%;
+  --input: 230 20% 20%;
+  --ring: 190 95% 55%;
+
+  /* Sidebar */
+  --sidebar-background: 230 15% 6%;
+  --sidebar-foreground: 220 15% 75%;
+  --sidebar-primary: 190 95% 55%;
+  --sidebar-primary-foreground: 230 15% 8%;
+  --sidebar-accent: 230 15% 12%;
+  --sidebar-accent-foreground: 220 15% 85%;
+  --sidebar-border: 230 20% 18%;
+  --sidebar-ring: 190 95% 55%;
+
+  /* Chart Colors - Neon palette */
+  --chart-1: 190 95% 55%;           /* Cyan */
+  --chart-2: 265 85% 65%;           /* Violet */
+  --chart-3: 150 80% 50%;           /* Green */
+  --chart-4: 320 90% 60%;           /* Magenta */
+  --chart-5: 45 95% 55%;            /* Gold */
+}

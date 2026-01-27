@@ -1,0 +1,59 @@
+-- Theme Bundle - Storage Bucket Setup
+-- Creates the private bucket for storing theme ZIP files
+-- 
+-- NOTE: Storage bucket creation via SQL is limited.
+-- This file documents the required configuration.
+-- Use the Supabase Dashboard or CLI to create the bucket.
+
+-- =============================================
+-- Storage Bucket: downloads
+-- =============================================
+-- 
+-- Configuration:
+-- - Name: downloads
+-- - Public: false (private bucket)
+-- - File size limit: 50MB (theme packages are typically < 1MB)
+-- - Allowed MIME types: application/zip, application/x-zip-compressed
+--
+-- To create via Supabase Dashboard:
+-- 1. Go to Storage in your Supabase project
+-- 2. Click "New bucket"
+-- 3. Name: "downloads"
+-- 4. Make sure "Public bucket" is UNCHECKED
+-- 5. Save
+--
+-- To create via Supabase CLI:
+-- supabase storage create downloads --public=false
+
+-- Storage policies (if using client-side access, not needed for service role)
+-- Since we use service role for all storage operations, these are optional
+
+-- Example policy for authenticated downloads (not used in current implementation):
+-- CREATE POLICY "Authenticated users can download their purchases"
+--   ON storage.objects
+--   FOR SELECT
+--   USING (
+--     bucket_id = 'downloads' AND
+--     auth.role() = 'authenticated' AND
+--     -- Add custom logic to verify purchase ownership
+--     true
+--   );
+
+-- =============================================
+-- Bucket Setup Instructions
+-- =============================================
+-- 
+-- Option 1: Via Supabase Dashboard
+-- --------------------------------
+-- 1. Go to your Supabase project dashboard
+-- 2. Navigate to Storage
+-- 3. Create a new bucket named "downloads"
+-- 4. Keep it as a private bucket
+--
+-- Option 2: Via Supabase CLI
+-- --------------------------
+-- npx supabase storage create downloads
+--
+-- Option 3: Via Supabase MCP (if available)
+-- -----------------------------------------
+-- Use the MCP tool to create the bucket programmatically

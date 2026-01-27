@@ -1,0 +1,122 @@
+/*
+ * CATPPUCCIN THEME
+ * Original: https://catppuccin.com
+ * Soothing pastel theme - using Mocha (dark) and Latte (light)
+ * 
+ * Core Palette (Mocha):
+ * - Base: #1e1e2e
+ * - Mauve: #cba6f7
+ * - Pink: #f5c2e7
+ * - Lavender: #b4befe
+ * - Blue: #89b4fa
+ */
+
+/* ========================================
+   CATPPUCCIN LATTE (Light)
+   ======================================== */
+[data-theme="catppuccin"] {
+  /* Surfaces */
+  --background: 220 23% 95%;        /* #eff1f5 - Base */
+  --foreground: 234 16% 35%;        /* #4c4f69 - Text */
+  --card: 220 22% 97%;              /* #e6e9ef - Mantle */
+  --card-foreground: 234 16% 35%;
+  --popover: 220 22% 97%;
+  --popover-foreground: 234 16% 35%;
+
+  /* Primary - Mauve */
+  --primary: 266 85% 50%;           /* #8839ef - darker for light */
+  --primary-foreground: 0 0% 100%;
+
+  /* Secondary - Pink */
+  --secondary: 316 73% 55%;         /* #dd7bbb */
+  --secondary-foreground: 0 0% 100%;
+
+  /* Muted */
+  --muted: 220 20% 90%;             /* #ccd0da - Surface0 */
+  --muted-foreground: 233 10% 47%;  /* #6c6f85 - Subtext0 */
+
+  /* Accent - Lavender */
+  --accent: 231 97% 62%;            /* #7287fd */
+  --accent-foreground: 0 0% 100%;
+
+  /* Destructive - Red */
+  --destructive: 347 87% 44%;       /* #d20f39 */
+  --destructive-foreground: 0 0% 100%;
+
+  /* Borders & Inputs */
+  --border: 220 18% 85%;
+  --input: 220 18% 85%;
+  --ring: 266 85% 50%;
+
+  /* Sidebar */
+  --sidebar-background: 220 21% 92%; /* #dce0e8 - Crust */
+  --sidebar-foreground: 234 16% 40%;
+  --sidebar-primary: 266 85% 50%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 220 20% 88%;
+  --sidebar-accent-foreground: 234 16% 35%;
+  --sidebar-border: 220 18% 82%;
+  --sidebar-ring: 266 85% 50%;
+
+  /* Chart Colors - Catppuccin Latte */
+  --chart-1: 266 85% 58%;           /* Mauve */
+  --chart-2: 316 73% 65%;           /* Pink */
+  --chart-3: 231 97% 68%;           /* Lavender */
+  --chart-4: 183 74% 35%;           /* Teal */
+  --chart-5: 105 48% 40%;           /* Green */
+}
+
+/* ========================================
+   CATPPUCCIN MOCHA (Dark)
+   ======================================== */
+.dark[data-theme="catppuccin"] {
+  /* Surfaces */
+  --background: 240 21% 12%;        /* #1e1e2e - Base */
+  --foreground: 226 64% 88%;        /* #cdd6f4 - Text */
+  --card: 240 21% 15%;              /* #313244 - Surface0 */
+  --card-foreground: 226 64% 88%;
+  --popover: 240 21% 15%;
+  --popover-foreground: 226 64% 88%;
+
+  /* Primary - Mauve */
+  --primary: 267 84% 81%;           /* #cba6f7 */
+  --primary-foreground: 240 21% 12%;
+
+  /* Secondary - Pink */
+  --secondary: 316 72% 86%;         /* #f5c2e7 */
+  --secondary-foreground: 240 21% 12%;
+
+  /* Muted */
+  --muted: 237 16% 23%;             /* #45475a - Surface1 */
+  --muted-foreground: 228 24% 72%;  /* #a6adc8 - Subtext0 */
+
+  /* Accent - Lavender */
+  --accent: 232 97% 85%;            /* #b4befe */
+  --accent-foreground: 240 21% 12%;
+
+  /* Destructive - Red */
+  --destructive: 343 81% 75%;       /* #f38ba8 */
+  --destructive-foreground: 240 21% 12%;
+
+  /* Borders & Inputs */
+  --border: 237 16% 28%;
+  --input: 237 16% 28%;
+  --ring: 267 84% 81%;
+
+  /* Sidebar */
+  --sidebar-background: 240 23% 9%; /* #11111b - Crust */
+  --sidebar-foreground: 227 50% 80%;
+  --sidebar-primary: 267 84% 81%;
+  --sidebar-primary-foreground: 240 21% 12%;
+  --sidebar-accent: 240 21% 17%;
+  --sidebar-accent-foreground: 226 64% 88%;
+  --sidebar-border: 237 16% 25%;
+  --sidebar-ring: 267 84% 81%;
+
+  /* Chart Colors - Catppuccin Mocha */
+  --chart-1: 267 84% 81%;           /* Mauve */
+  --chart-2: 316 72% 86%;           /* Pink */
+  --chart-3: 232 97% 85%;           /* Lavender */
+  --chart-4: 189 71% 73%;           /* Teal */
+  --chart-5: 115 54% 76%;           /* Green */
+}

@@ -1,0 +1,121 @@
+/*
+ * GITHUB THEME
+ * Original: GitHub's interface colors
+ * Clean, professional, and highly readable
+ * 
+ * Core Palette:
+ * - Background: #0d1117 (dark) / #ffffff (light)
+ * - Blue: #0969da (light) / #58a6ff (dark)
+ * - Purple: #8250df
+ * - Green: #1a7f37 / #3fb950
+ */
+
+/* ========================================
+   GITHUB LIGHT
+   ======================================== */
+[data-theme="github"] {
+  /* Surfaces */
+  --background: 0 0% 100%;          /* #ffffff */
+  --foreground: 210 12% 16%;        /* #24292f */
+  --card: 210 17% 98%;              /* #f6f8fa */
+  --card-foreground: 210 12% 16%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 210 12% 16%;
+
+  /* Primary - Blue */
+  --primary: 212 92% 45%;           /* #0969da */
+  --primary-foreground: 0 0% 100%;
+
+  /* Secondary - Purple */
+  --secondary: 264 67% 59%;         /* #8250df */
+  --secondary-foreground: 0 0% 100%;
+
+  /* Muted */
+  --muted: 210 17% 95%;             /* #f6f8fa */
+  --muted-foreground: 210 9% 43%;   /* #656d76 */
+
+  /* Accent - Green */
+  --accent: 137 55% 30%;            /* #1a7f37 */
+  --accent-foreground: 0 0% 100%;
+
+  /* Destructive - Red */
+  --destructive: 355 78% 50%;       /* #cf222e */
+  --destructive-foreground: 0 0% 100%;
+
+  /* Borders & Inputs */
+  --border: 210 18% 87%;            /* #d0d7de */
+  --input: 210 18% 87%;
+  --ring: 212 92% 45%;
+
+  /* Sidebar */
+  --sidebar-background: 210 17% 97%;
+  --sidebar-foreground: 210 12% 22%;
+  --sidebar-primary: 212 92% 45%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 210 17% 93%;
+  --sidebar-accent-foreground: 210 12% 16%;
+  --sidebar-border: 210 18% 84%;
+  --sidebar-ring: 212 92% 45%;
+
+  /* Chart Colors - GitHub palette */
+  --chart-1: 212 92% 45%;           /* Blue */
+  --chart-2: 264 67% 59%;           /* Purple */
+  --chart-3: 137 55% 35%;           /* Green */
+  --chart-4: 32 95% 44%;            /* Orange */
+  --chart-5: 355 78% 50%;           /* Red */
+}
+
+/* ========================================
+   GITHUB DARK
+   ======================================== */
+.dark[data-theme="github"] {
+  /* Surfaces */
+  --background: 215 21% 7%;         /* #0d1117 */
+  --foreground: 210 17% 82%;        /* #c9d1d9 */
+  --card: 215 19% 11%;              /* #161b22 */
+  --card-foreground: 210 17% 82%;
+  --popover: 215 19% 11%;
+  --popover-foreground: 210 17% 82%;
+
+  /* Primary - Blue */
+  --primary: 212 97% 67%;           /* #58a6ff */
+  --primary-foreground: 215 21% 7%;
+
+  /* Secondary - Purple */
+  --secondary: 264 78% 73%;         /* #a371f7 */
+  --secondary-foreground: 215 21% 7%;
+
+  /* Muted */
+  --muted: 215 17% 15%;             /* #21262d */
+  --muted-foreground: 212 13% 55%;  /* #8b949e */
+
+  /* Accent - Green */
+  --accent: 139 66% 52%;            /* #3fb950 */
+  --accent-foreground: 215 21% 7%;
+
+  /* Destructive - Red */
+  --destructive: 356 72% 65%;       /* #f85149 */
+  --destructive-foreground: 0 0% 100%;
+
+  /* Borders & Inputs */
+  --border: 215 14% 21%;            /* #30363d */
+  --input: 215 14% 21%;
+  --ring: 212 97% 67%;
+
+  /* Sidebar */
+  --sidebar-background: 215 21% 5%;
+  --sidebar-foreground: 210 14% 75%;
+  --sidebar-primary: 212 97% 67%;
+  --sidebar-primary-foreground: 215 21% 7%;
+  --sidebar-accent: 215 19% 13%;
+  --sidebar-accent-foreground: 210 17% 82%;
+  --sidebar-border: 215 14% 18%;
+  --sidebar-ring: 212 97% 67%;
+
+  /* Chart Colors - GitHub dark palette */
+  --chart-1: 212 97% 67%;           /* Blue */
+  --chart-2: 264 78% 73%;           /* Purple */
+  --chart-3: 139 66% 52%;           /* Green */
+  --chart-4: 32 100% 54%;           /* Orange */
+  --chart-5: 356 72% 65%;           /* Red */
+}

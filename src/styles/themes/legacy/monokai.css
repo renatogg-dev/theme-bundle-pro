@@ -1,0 +1,123 @@
+/*
+ * MONOKAI THEME
+ * Original: Monokai Pro by monokai.pro
+ * Iconic color scheme from Sublime Text
+ * 
+ * Core Palette:
+ * - Background: #272822 (dark)
+ * - Pink: #f92672
+ * - Green: #a6e22e
+ * - Yellow: #e6db74
+ * - Blue: #66d9ef
+ * - Purple: #ae81ff
+ */
+
+/* ========================================
+   MONOKAI LIGHT
+   ======================================== */
+[data-theme="monokai"] {
+  /* Surfaces */
+  --background: 70 10% 96%;         /* #f8f8f2-ish light */
+  --foreground: 70 10% 15%;         /* Dark olive */
+  --card: 70 12% 98%;
+  --card-foreground: 70 10% 15%;
+  --popover: 70 12% 98%;
+  --popover-foreground: 70 10% 15%;
+
+  /* Primary - Pink (darker for light) */
+  --primary: 338 90% 45%;           /* #c41b5a */
+  --primary-foreground: 0 0% 100%;
+
+  /* Secondary - Purple */
+  --secondary: 265 70% 55%;         /* #8f5fd6 */
+  --secondary-foreground: 0 0% 100%;
+
+  /* Muted */
+  --muted: 70 8% 92%;
+  --muted-foreground: 70 5% 45%;
+
+  /* Accent - Green (darker) */
+  --accent: 80 70% 40%;             /* #6d9a1f */
+  --accent-foreground: 0 0% 100%;
+
+  /* Destructive */
+  --destructive: 0 85% 50%;
+  --destructive-foreground: 0 0% 100%;
+
+  /* Borders & Inputs */
+  --border: 70 10% 85%;
+  --input: 70 10% 85%;
+  --ring: 338 90% 45%;
+
+  /* Sidebar */
+  --sidebar-background: 70 10% 94%;
+  --sidebar-foreground: 70 10% 25%;
+  --sidebar-primary: 338 90% 45%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 70 10% 90%;
+  --sidebar-accent-foreground: 70 10% 15%;
+  --sidebar-border: 70 10% 82%;
+  --sidebar-ring: 338 90% 45%;
+
+  /* Chart Colors */
+  --chart-1: 338 90% 50%;           /* Pink */
+  --chart-2: 80 70% 45%;            /* Green */
+  --chart-3: 54 70% 55%;            /* Yellow */
+  --chart-4: 190 80% 50%;           /* Blue */
+  --chart-5: 265 70% 60%;           /* Purple */
+}
+
+/* ========================================
+   MONOKAI DARK
+   ======================================== */
+.dark[data-theme="monokai"] {
+  /* Surfaces */
+  --background: 70 8% 15%;          /* #272822 */
+  --foreground: 60 30% 96%;         /* #f8f8f2 */
+  --card: 70 8% 18%;                /* #2e2e26 */
+  --card-foreground: 60 30% 96%;
+  --popover: 70 8% 18%;
+  --popover-foreground: 60 30% 96%;
+
+  /* Primary - Pink */
+  --primary: 338 95% 56%;           /* #f92672 */
+  --primary-foreground: 0 0% 100%;
+
+  /* Secondary - Purple */
+  --secondary: 265 89% 75%;         /* #ae81ff */
+  --secondary-foreground: 70 8% 10%;
+
+  /* Muted */
+  --muted: 70 6% 22%;               /* #3e3d32 */
+  --muted-foreground: 60 15% 60%;
+
+  /* Accent - Green */
+  --accent: 80 76% 53%;             /* #a6e22e */
+  --accent-foreground: 70 8% 10%;
+
+  /* Destructive */
+  --destructive: 0 85% 55%;
+  --destructive-foreground: 0 0% 100%;
+
+  /* Borders & Inputs */
+  --border: 70 6% 28%;
+  --input: 70 6% 28%;
+  --ring: 338 95% 56%;
+
+  /* Sidebar */
+  --sidebar-background: 70 8% 12%;
+  --sidebar-foreground: 60 25% 85%;
+  --sidebar-primary: 338 95% 56%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 70 8% 20%;
+  --sidebar-accent-foreground: 60 30% 96%;
+  --sidebar-border: 70 6% 25%;
+  --sidebar-ring: 338 95% 56%;
+
+  /* Chart Colors - Monokai vibrant */
+  --chart-1: 338 95% 56%;           /* Pink */
+  --chart-2: 80 76% 53%;            /* Green */
+  --chart-3: 54 70% 68%;            /* Yellow */
+  --chart-4: 190 81% 67%;           /* Blue */
+  --chart-5: 265 89% 75%;           /* Purple */
+}

@@ -1,0 +1,122 @@
+/*
+ * SYNTHWAVE THEME
+ * Original: Synthwave '84 VSCode theme
+ * Retro-futuristic 80s inspired neon aesthetic
+ * 
+ * Core Palette:
+ * - Background: #262335
+ * - Pink: #ff7edb
+ * - Cyan: #72f1b8
+ * - Orange: #f97e72
+ * - Yellow: #fede5d
+ */
+
+/* ========================================
+   SYNTHWAVE LIGHT (Retrowave Day)
+   ======================================== */
+[data-theme="synthwave"] {
+  /* Surfaces */
+  --background: 280 15% 96%;        /* Soft purple-tinted white */
+  --foreground: 262 25% 20%;        /* Dark purple */
+  --card: 280 20% 98%;
+  --card-foreground: 262 25% 20%;
+  --popover: 280 20% 98%;
+  --popover-foreground: 262 25% 20%;
+
+  /* Primary - Hot Pink */
+  --primary: 310 90% 50%;           /* #e020a0 - darker for light */
+  --primary-foreground: 0 0% 100%;
+
+  /* Secondary - Electric Cyan */
+  --secondary: 160 80% 40%;         /* #14b881 */
+  --secondary-foreground: 0 0% 100%;
+
+  /* Muted */
+  --muted: 280 12% 90%;
+  --muted-foreground: 262 15% 45%;
+
+  /* Accent - Neon Orange */
+  --accent: 10 90% 55%;             /* #f04830 */
+  --accent-foreground: 0 0% 100%;
+
+  /* Destructive */
+  --destructive: 0 85% 50%;
+  --destructive-foreground: 0 0% 100%;
+
+  /* Borders & Inputs */
+  --border: 280 12% 85%;
+  --input: 280 12% 85%;
+  --ring: 310 90% 50%;
+
+  /* Sidebar */
+  --sidebar-background: 280 15% 94%;
+  --sidebar-foreground: 262 20% 28%;
+  --sidebar-primary: 310 90% 50%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 280 15% 88%;
+  --sidebar-accent-foreground: 262 25% 20%;
+  --sidebar-border: 280 12% 82%;
+  --sidebar-ring: 310 90% 50%;
+
+  /* Chart Colors - Synthwave neon */
+  --chart-1: 310 90% 55%;           /* Pink */
+  --chart-2: 160 80% 45%;           /* Cyan */
+  --chart-3: 50 95% 50%;            /* Yellow */
+  --chart-4: 10 90% 58%;            /* Orange */
+  --chart-5: 275 80% 60%;           /* Purple */
+}
+
+/* ========================================
+   SYNTHWAVE DARK
+   ======================================== */
+.dark[data-theme="synthwave"] {
+  /* Surfaces */
+  --background: 262 35% 17%;        /* #262335 */
+  --foreground: 280 20% 90%;        /* Light lavender */
+  --card: 262 32% 20%;              /* #2d2a42 */
+  --card-foreground: 280 20% 90%;
+  --popover: 262 32% 20%;
+  --popover-foreground: 280 20% 90%;
+
+  /* Primary - Hot Pink */
+  --primary: 310 100% 74%;          /* #ff7edb */
+  --primary-foreground: 262 35% 12%;
+
+  /* Secondary - Neon Cyan-Green */
+  --secondary: 156 82% 70%;         /* #72f1b8 */
+  --secondary-foreground: 262 35% 12%;
+
+  /* Muted */
+  --muted: 262 25% 25%;
+  --muted-foreground: 280 15% 60%;
+
+  /* Accent - Neon Orange */
+  --accent: 7 93% 71%;              /* #f97e72 */
+  --accent-foreground: 262 35% 12%;
+
+  /* Destructive */
+  --destructive: 0 90% 65%;
+  --destructive-foreground: 0 0% 100%;
+
+  /* Borders & Inputs */
+  --border: 262 25% 28%;
+  --input: 262 25% 28%;
+  --ring: 310 100% 74%;
+
+  /* Sidebar */
+  --sidebar-background: 262 35% 14%;
+  --sidebar-foreground: 280 18% 80%;
+  --sidebar-primary: 310 100% 74%;
+  --sidebar-primary-foreground: 262 35% 12%;
+  --sidebar-accent: 262 30% 22%;
+  --sidebar-accent-foreground: 280 20% 90%;
+  --sidebar-border: 262 25% 25%;
+  --sidebar-ring: 310 100% 74%;
+
+  /* Chart Colors - Full neon */
+  --chart-1: 310 100% 74%;          /* Pink */
+  --chart-2: 156 82% 70%;           /* Cyan */
+  --chart-3: 50 97% 63%;            /* Yellow */
+  --chart-4: 7 93% 71%;             /* Orange */
+  --chart-5: 275 91% 73%;           /* Purple */
+}

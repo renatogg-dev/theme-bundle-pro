@@ -1,0 +1,226 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* === BASE VARIABLES === */
+@import "./themes/_variables.css";
+
+/* === FLAGSHIP THEMES === */
+@import "./themes/flagships/deep-space.css";
+@import "./themes/flagships/mint-carbon.css";
+@import "./themes/flagships/solar-flare.css";
+
+/* === LEGACY COLLECTION === */
+@import "./themes/legacy/dracula.css";
+@import "./themes/legacy/nord.css";
+@import "./themes/legacy/monokai.css";
+@import "./themes/legacy/gruvbox.css";
+@import "./themes/legacy/tokyo-night.css";
+@import "./themes/legacy/catppuccin.css";
+@import "./themes/legacy/one-dark.css";
+@import "./themes/legacy/synthwave.css";
+@import "./themes/legacy/solarized.css";
+@import "./themes/legacy/github.css";
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  /* Smooth theme transitions */
+  *,
+  *::before,
+  *::after {
+    transition:
+      background-color var(--theme-transition-duration) ease,
+      border-color var(--theme-transition-duration) ease,
+      color var(--theme-transition-duration) ease,
+      fill var(--theme-transition-duration) ease,
+      stroke var(--theme-transition-duration) ease,
+      box-shadow var(--theme-transition-duration) ease;
+  }
+
+  /* Disable transitions during theme load to prevent flash */
+  html.no-transitions *,
+  html.no-transitions *::before,
+  html.no-transitions *::after {
+    transition: none !important;
+  }
+}
+
+@layer components {
+  /* Code block styling */
+  .code-block {
+    @apply font-mono text-sm;
+    background: hsl(var(--muted));
+    border: 1px solid hsl(var(--border));
+    border-radius: var(--radius);
+  }
+
+  /* Syntax highlighting tokens */
+  .token-keyword { color: hsl(var(--primary)); }
+  .token-string { color: hsl(var(--chart-4)); }
+  .token-function { color: hsl(var(--chart-1)); }
+  .token-comment { color: hsl(var(--muted-foreground)); font-style: italic; }
+  .token-number { color: hsl(var(--chart-3)); }
+  .token-operator { color: hsl(var(--secondary)); }
+  .token-variable { color: hsl(var(--accent)); }
+
+  /* === PLATFORM PREVIEW TOKENS === */
+  /* Syntax colors for editor previews */
+  .syntax-keyword { color: hsl(var(--chart-4)); }
+  .syntax-function { color: hsl(var(--chart-1)); }
+  .syntax-string { color: hsl(var(--chart-2)); }
+  .syntax-property { color: hsl(var(--chart-5)); }
+  .syntax-comment { color: hsl(var(--muted-foreground) / 0.6); }
+
+  /* Terminal colors */
+  .term-prompt { color: hsl(var(--chart-3)); }
+  .term-path { color: hsl(var(--chart-4)); }
+  .term-branch { color: hsl(var(--chart-1)); }
+  .term-success { color: hsl(var(--chart-2)); }
+  .term-error { color: hsl(var(--destructive)); }
+
+  /* ANSI color swatches */
+  .ansi-white { background: hsl(var(--foreground)); }
+  .ansi-gray { background: hsl(var(--muted-foreground)); }
+  .ansi-red { background: hsl(var(--destructive)); }
+  .ansi-green { background: hsl(var(--chart-2)); }
+  .ansi-yellow { background: hsl(var(--chart-5)); }
+  .ansi-blue { background: hsl(var(--chart-4)); }
+  .ansi-magenta { background: hsl(var(--chart-1)); }
+  .ansi-cyan { background: hsl(var(--chart-3)); }
+
+  /* Diff colors */
+  .diff-added-bg { background: hsl(var(--chart-2) / 0.1); }
+  .diff-added-gutter { background: hsl(var(--chart-2) / 0.2); border-color: hsl(var(--chart-2) / 0.3); }
+  .diff-added-text { color: hsl(var(--chart-2)); }
+  .diff-removed-bg { background: hsl(var(--destructive) / 0.1); }
+  .diff-removed-gutter { background: hsl(var(--destructive) / 0.2); border-color: hsl(var(--destructive) / 0.3); }
+  .diff-removed-text { color: hsl(var(--destructive)); }
+}
+
+@layer utilities {
+  /* === PERFORMANCE OPTIMIZATIONS === */
+  
+  /* CSS Containment - isolates sections from affecting each other during style recalculations */
+  .contain-section {
+    contain: layout style paint;
+  }
+  
+  /* Content-visibility - lazy renders sections outside viewport */
+  .content-lazy {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 500px; /* Estimated height for layout stability */
+  }
+  
+  .content-lazy-sm {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 300px;
+  }
+  
+  .content-lazy-lg {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 800px;
+  }
+
+  /* === GLOW EFFECTS === */
+  .terminal-glow {
+    box-shadow: 
+      0 0 5px hsl(var(--primary) / 0.3),
+      0 0 20px hsl(var(--primary) / 0.15),
+      0 0 40px hsl(var(--primary) / 0.05);
+  }
+
+  .terminal-glow-sm {
+    box-shadow: 
+      0 0 3px hsl(var(--primary) / 0.25),
+      0 0 10px hsl(var(--primary) / 0.1);
+  }
+
+  .terminal-glow-lg {
+    box-shadow: 
+      0 0 10px hsl(var(--primary) / 0.4),
+      0 0 30px hsl(var(--primary) / 0.2),
+      0 0 60px hsl(var(--primary) / 0.1);
+  }
+
+  /* === TEXT GLOW === */
+  .text-glow {
+    text-shadow: 
+      0 0 5px hsl(var(--primary) / 0.5),
+      0 0 15px hsl(var(--primary) / 0.3);
+  }
+
+  .text-glow-sm {
+    text-shadow: 0 0 8px hsl(var(--primary) / 0.4);
+  }
+
+  /* === SCANLINE EFFECT === */
+  .scanline {
+    position: relative;
+  }
+
+  .scanline::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      hsl(var(--foreground) / 0.02) 2px,
+      hsl(var(--foreground) / 0.02) 4px
+    );
+  }
+
+  /* === CURSOR BLINK === */
+  .cursor-blink {
+    animation: cursor-blink 1s step-end infinite;
+  }
+
+  @keyframes cursor-blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  /* === GRID PATTERN === */
+  .grid-pattern {
+    background-image: 
+      linear-gradient(hsl(var(--border) / 0.5) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--border) / 0.5) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  /* === TERMINAL CARD === */
+  .terminal-card {
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  .terminal-card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: hsl(var(--muted) / 0.5);
+    border-bottom: 1px solid hsl(var(--border));
+  }
+
+  .terminal-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+  }
+
+  .terminal-dot-red { background: hsl(0 84% 60%); }
+  .terminal-dot-yellow { background: hsl(45 93% 47%); }
+  .terminal-dot-green { background: hsl(142 71% 45%); }
+}

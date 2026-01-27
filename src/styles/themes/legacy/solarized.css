@@ -1,0 +1,123 @@
+/*
+ * SOLARIZED THEME
+ * Original: https://ethanschoonover.com/solarized/
+ * Precision colors for machines and people
+ * 
+ * Core Palette:
+ * - Base03: #002b36 (dark bg)
+ * - Base3: #fdf6e3 (light bg)
+ * - Blue: #268bd2
+ * - Cyan: #2aa198
+ * - Green: #859900
+ * - Yellow: #b58900
+ */
+
+/* ========================================
+   SOLARIZED LIGHT
+   ======================================== */
+[data-theme="solarized"] {
+  /* Surfaces */
+  --background: 44 87% 94%;         /* #fdf6e3 - Base3 */
+  --foreground: 194 14% 40%;        /* #657b83 - Base00 */
+  --card: 44 75% 96%;               /* #eee8d5 - Base2 */
+  --card-foreground: 194 14% 40%;
+  --popover: 44 75% 96%;
+  --popover-foreground: 194 14% 40%;
+
+  /* Primary - Blue */
+  --primary: 205 69% 49%;           /* #268bd2 */
+  --primary-foreground: 44 87% 94%;
+
+  /* Secondary - Violet */
+  --secondary: 284 68% 47%;         /* #6c71c4 */
+  --secondary-foreground: 44 87% 94%;
+
+  /* Muted */
+  --muted: 46 42% 88%;              /* #eee8d5-ish */
+  --muted-foreground: 195 23% 51%;  /* #93a1a1 - Base1 */
+
+  /* Accent - Cyan */
+  --accent: 175 59% 40%;            /* #2aa198 */
+  --accent-foreground: 44 87% 94%;
+
+  /* Destructive - Red */
+  --destructive: 1 71% 52%;         /* #dc322f */
+  --destructive-foreground: 44 87% 94%;
+
+  /* Borders & Inputs */
+  --border: 46 30% 80%;
+  --input: 46 30% 80%;
+  --ring: 205 69% 49%;
+
+  /* Sidebar */
+  --sidebar-background: 46 42% 90%;
+  --sidebar-foreground: 194 14% 35%;
+  --sidebar-primary: 205 69% 49%;
+  --sidebar-primary-foreground: 44 87% 94%;
+  --sidebar-accent: 46 35% 85%;
+  --sidebar-accent-foreground: 194 14% 40%;
+  --sidebar-border: 46 30% 78%;
+  --sidebar-ring: 205 69% 49%;
+
+  /* Chart Colors - Solarized accent colors */
+  --chart-1: 205 69% 49%;           /* Blue */
+  --chart-2: 175 59% 40%;           /* Cyan */
+  --chart-3: 68 100% 30%;           /* Green */
+  --chart-4: 45 100% 35%;           /* Yellow */
+  --chart-5: 18 89% 45%;            /* Orange */
+}
+
+/* ========================================
+   SOLARIZED DARK
+   ======================================== */
+.dark[data-theme="solarized"] {
+  /* Surfaces */
+  --background: 192 100% 11%;       /* #002b36 - Base03 */
+  --foreground: 186 8% 55%;         /* #839496 - Base0 */
+  --card: 192 81% 14%;              /* #073642 - Base02 */
+  --card-foreground: 186 8% 55%;
+  --popover: 192 81% 14%;
+  --popover-foreground: 186 8% 55%;
+
+  /* Primary - Blue */
+  --primary: 205 69% 49%;           /* #268bd2 */
+  --primary-foreground: 192 100% 8%;
+
+  /* Secondary - Violet */
+  --secondary: 284 68% 53%;         /* #6c71c4 */
+  --secondary-foreground: 192 100% 8%;
+
+  /* Muted */
+  --muted: 192 70% 16%;
+  --muted-foreground: 180 7% 44%;   /* #586e75 - Base01 */
+
+  /* Accent - Cyan */
+  --accent: 175 59% 40%;            /* #2aa198 */
+  --accent-foreground: 192 100% 8%;
+
+  /* Destructive - Red */
+  --destructive: 1 71% 52%;         /* #dc322f */
+  --destructive-foreground: 0 0% 100%;
+
+  /* Borders & Inputs */
+  --border: 192 60% 18%;
+  --input: 192 60% 18%;
+  --ring: 205 69% 49%;
+
+  /* Sidebar */
+  --sidebar-background: 192 100% 9%;
+  --sidebar-foreground: 186 8% 50%;
+  --sidebar-primary: 205 69% 49%;
+  --sidebar-primary-foreground: 192 100% 8%;
+  --sidebar-accent: 192 75% 15%;
+  --sidebar-accent-foreground: 186 8% 55%;
+  --sidebar-border: 192 60% 16%;
+  --sidebar-ring: 205 69% 49%;
+
+  /* Chart Colors - Same as light, works well on dark */
+  --chart-1: 205 69% 49%;
+  --chart-2: 175 59% 40%;
+  --chart-3: 68 100% 40%;
+  --chart-4: 45 100% 40%;
+  --chart-5: 18 89% 50%;
+}

@@ -1,0 +1,122 @@
+/*
+ * TOKYO NIGHT THEME
+ * Original: https://github.com/enkia/tokyo-night-vscode-theme
+ * A clean dark theme celebrating the lights of Tokyo at night
+ * 
+ * Core Palette:
+ * - Background: #1a1b26 (dark) / #d5d6db (light)
+ * - Blue: #7aa2f7
+ * - Purple: #bb9af7
+ * - Cyan: #7dcfff
+ * - Green: #9ece6a
+ */
+
+/* ========================================
+   TOKYO NIGHT LIGHT (Day variant)
+   ======================================== */
+[data-theme="tokyo-night"] {
+  /* Surfaces */
+  --background: 230 15% 93%;        /* #e1e2e7 - Tokyo Day */
+  --foreground: 231 15% 20%;        /* #343b58 */
+  --card: 230 18% 96%;
+  --card-foreground: 231 15% 20%;
+  --popover: 230 18% 96%;
+  --popover-foreground: 231 15% 20%;
+
+  /* Primary - Blue */
+  --primary: 220 80% 50%;           /* #2959c5 - darker for light */
+  --primary-foreground: 0 0% 100%;
+
+  /* Secondary - Purple */
+  --secondary: 267 60% 50%;         /* #7847bd */
+  --secondary-foreground: 0 0% 100%;
+
+  /* Muted */
+  --muted: 230 12% 88%;
+  --muted-foreground: 231 10% 45%;
+
+  /* Accent - Cyan */
+  --accent: 197 80% 45%;            /* #1898c7 */
+  --accent-foreground: 0 0% 100%;
+
+  /* Destructive */
+  --destructive: 348 80% 50%;       /* #c64b6f */
+  --destructive-foreground: 0 0% 100%;
+
+  /* Borders & Inputs */
+  --border: 230 12% 82%;
+  --input: 230 12% 82%;
+  --ring: 220 80% 50%;
+
+  /* Sidebar */
+  --sidebar-background: 230 15% 91%;
+  --sidebar-foreground: 231 15% 28%;
+  --sidebar-primary: 220 80% 50%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 230 15% 86%;
+  --sidebar-accent-foreground: 231 15% 20%;
+  --sidebar-border: 230 12% 80%;
+  --sidebar-ring: 220 80% 50%;
+
+  /* Chart Colors */
+  --chart-1: 220 80% 55%;           /* Blue */
+  --chart-2: 267 60% 55%;           /* Purple */
+  --chart-3: 197 80% 50%;           /* Cyan */
+  --chart-4: 85 50% 45%;            /* Green */
+  --chart-5: 348 80% 55%;           /* Red */
+}
+
+/* ========================================
+   TOKYO NIGHT DARK
+   ======================================== */
+.dark[data-theme="tokyo-night"] {
+  /* Surfaces */
+  --background: 235 21% 13%;        /* #1a1b26 */
+  --foreground: 231 14% 78%;        /* #a9b1d6 */
+  --card: 235 20% 16%;              /* #24283b */
+  --card-foreground: 231 14% 78%;
+  --popover: 235 20% 16%;
+  --popover-foreground: 231 14% 78%;
+
+  /* Primary - Blue */
+  --primary: 220 83% 72%;           /* #7aa2f7 */
+  --primary-foreground: 235 21% 11%;
+
+  /* Secondary - Magenta/Purple */
+  --secondary: 267 84% 81%;         /* #bb9af7 */
+  --secondary-foreground: 235 21% 11%;
+
+  /* Muted */
+  --muted: 235 18% 20%;             /* #292e42 */
+  --muted-foreground: 231 10% 55%;
+
+  /* Accent - Cyan */
+  --accent: 197 100% 73%;           /* #7dcfff */
+  --accent-foreground: 235 21% 11%;
+
+  /* Destructive */
+  --destructive: 348 90% 72%;       /* #f7768e */
+  --destructive-foreground: 0 0% 100%;
+
+  /* Borders & Inputs */
+  --border: 235 18% 25%;
+  --input: 235 18% 25%;
+  --ring: 220 83% 72%;
+
+  /* Sidebar */
+  --sidebar-background: 235 21% 11%;
+  --sidebar-foreground: 231 14% 70%;
+  --sidebar-primary: 220 83% 72%;
+  --sidebar-primary-foreground: 235 21% 11%;
+  --sidebar-accent: 235 20% 18%;
+  --sidebar-accent-foreground: 231 14% 78%;
+  --sidebar-border: 235 18% 22%;
+  --sidebar-ring: 220 83% 72%;
+
+  /* Chart Colors - Tokyo neon */
+  --chart-1: 220 83% 72%;           /* Blue */
+  --chart-2: 267 84% 81%;           /* Purple */
+  --chart-3: 197 100% 73%;          /* Cyan */
+  --chart-4: 85 62% 67%;            /* Green */
+  --chart-5: 348 90% 72%;           /* Red */
+}

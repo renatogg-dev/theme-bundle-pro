@@ -1,0 +1,122 @@
+/*
+ * GRUVBOX THEME
+ * Original: https://github.com/morhetz/gruvbox
+ * Retro groove color scheme with warm, earthy tones
+ * 
+ * Core Palette:
+ * - Background: #282828 (dark) / #fbf1c7 (light)
+ * - Orange: #d65d0e / #fe8019
+ * - Green: #98971a / #b8bb26
+ * - Yellow: #d79921 / #fabd2f
+ * - Red: #cc241d / #fb4934
+ */
+
+/* ========================================
+   GRUVBOX LIGHT
+   ======================================== */
+[data-theme="gruvbox"] {
+  /* Surfaces */
+  --background: 48 87% 94%;         /* #fbf1c7 - warm paper */
+  --foreground: 0 0% 16%;           /* #282828 */
+  --card: 48 80% 96%;
+  --card-foreground: 0 0% 16%;
+  --popover: 48 80% 96%;
+  --popover-foreground: 0 0% 16%;
+
+  /* Primary - Orange */
+  --primary: 24 91% 45%;            /* #d65d0e */
+  --primary-foreground: 48 87% 94%;
+
+  /* Secondary - Aqua */
+  --secondary: 175 50% 35%;         /* #427b58 */
+  --secondary-foreground: 48 87% 94%;
+
+  /* Muted */
+  --muted: 48 50% 88%;              /* #ebdbb2 */
+  --muted-foreground: 0 0% 35%;
+
+  /* Accent - Yellow */
+  --accent: 42 78% 50%;             /* #d79921 */
+  --accent-foreground: 0 0% 16%;
+
+  /* Destructive - Red */
+  --destructive: 6 96% 46%;         /* #cc241d */
+  --destructive-foreground: 48 87% 94%;
+
+  /* Borders & Inputs */
+  --border: 48 40% 80%;
+  --input: 48 40% 80%;
+  --ring: 24 91% 45%;
+
+  /* Sidebar */
+  --sidebar-background: 48 70% 91%;
+  --sidebar-foreground: 0 0% 25%;
+  --sidebar-primary: 24 91% 45%;
+  --sidebar-primary-foreground: 48 87% 94%;
+  --sidebar-accent: 48 55% 85%;
+  --sidebar-accent-foreground: 0 0% 16%;
+  --sidebar-border: 48 40% 78%;
+  --sidebar-ring: 24 91% 45%;
+
+  /* Chart Colors - Gruvbox palette */
+  --chart-1: 24 91% 52%;            /* Orange */
+  --chart-2: 61 66% 40%;            /* Green */
+  --chart-3: 42 78% 55%;            /* Yellow */
+  --chart-4: 175 50% 40%;           /* Aqua */
+  --chart-5: 6 96% 52%;             /* Red */
+}
+
+/* ========================================
+   GRUVBOX DARK
+   ======================================== */
+.dark[data-theme="gruvbox"] {
+  /* Surfaces */
+  --background: 0 0% 16%;           /* #282828 */
+  --foreground: 48 45% 82%;         /* #ebdbb2 */
+  --card: 0 0% 19%;                 /* #32302f */
+  --card-foreground: 48 45% 82%;
+  --popover: 0 0% 19%;
+  --popover-foreground: 48 45% 82%;
+
+  /* Primary - Orange bright */
+  --primary: 27 98% 55%;            /* #fe8019 */
+  --primary-foreground: 0 0% 12%;
+
+  /* Secondary - Aqua bright */
+  --secondary: 175 59% 53%;         /* #8ec07c */
+  --secondary-foreground: 0 0% 12%;
+
+  /* Muted */
+  --muted: 0 0% 23%;                /* #3c3836 */
+  --muted-foreground: 48 30% 60%;
+
+  /* Accent - Yellow bright */
+  --accent: 42 100% 59%;            /* #fabd2f */
+  --accent-foreground: 0 0% 12%;
+
+  /* Destructive - Red bright */
+  --destructive: 8 98% 60%;         /* #fb4934 */
+  --destructive-foreground: 0 0% 100%;
+
+  /* Borders & Inputs */
+  --border: 0 0% 28%;               /* #504945 */
+  --input: 0 0% 28%;
+  --ring: 27 98% 55%;
+
+  /* Sidebar */
+  --sidebar-background: 0 0% 14%;
+  --sidebar-foreground: 48 40% 75%;
+  --sidebar-primary: 27 98% 55%;
+  --sidebar-primary-foreground: 0 0% 12%;
+  --sidebar-accent: 0 0% 20%;
+  --sidebar-accent-foreground: 48 45% 82%;
+  --sidebar-border: 0 0% 25%;
+  --sidebar-ring: 27 98% 55%;
+
+  /* Chart Colors - Gruvbox bright */
+  --chart-1: 27 98% 55%;            /* Orange */
+  --chart-2: 61 83% 59%;            /* Green */
+  --chart-3: 42 100% 59%;           /* Yellow */
+  --chart-4: 175 59% 53%;           /* Aqua */
+  --chart-5: 8 98% 60%;             /* Red */
+}

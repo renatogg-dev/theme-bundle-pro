@@ -1,0 +1,121 @@
+/*
+ * DRACULA THEME
+ * Original: https://draculatheme.com
+ * A dark theme for code editors and terminals
+ * 
+ * Core Palette:
+ * - Background: #282a36 (dark) / #f8f8f2-tinted (light)
+ * - Purple: #bd93f9
+ * - Pink: #ff79c6
+ * - Cyan: #8be9fd
+ */
+
+/* ========================================
+   DRACULA LIGHT
+   ======================================== */
+[data-theme="dracula"] {
+  /* Surfaces */
+  --background: 250 15% 96%;        /* #f4f3f7 - off-white with purple tint */
+  --foreground: 231 15% 18%;        /* #282a36 */
+  --card: 250 20% 98%;
+  --card-foreground: 231 15% 18%;
+  --popover: 250 20% 98%;
+  --popover-foreground: 231 15% 18%;
+
+  /* Primary - Purple */
+  --primary: 265 70% 55%;           /* #9063d4 - darker for light */
+  --primary-foreground: 0 0% 100%;
+
+  /* Secondary - Pink */
+  --secondary: 326 90% 55%;         /* #e84a9c */
+  --secondary-foreground: 0 0% 100%;
+
+  /* Muted */
+  --muted: 250 12% 92%;
+  --muted-foreground: 231 10% 45%;
+
+  /* Accent - Cyan */
+  --accent: 191 80% 45%;            /* #2cb5c7 */
+  --accent-foreground: 0 0% 100%;
+
+  /* Destructive */
+  --destructive: 0 100% 60%;        /* #ff5555 */
+  --destructive-foreground: 0 0% 100%;
+
+  /* Borders & Inputs */
+  --border: 250 15% 85%;
+  --input: 250 15% 85%;
+  --ring: 265 70% 55%;
+
+  /* Sidebar */
+  --sidebar-background: 250 18% 94%;
+  --sidebar-foreground: 231 15% 25%;
+  --sidebar-primary: 265 70% 55%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 250 20% 90%;
+  --sidebar-accent-foreground: 231 15% 18%;
+  --sidebar-border: 250 15% 82%;
+  --sidebar-ring: 265 70% 55%;
+
+  /* Chart Colors - Dracula palette */
+  --chart-1: 265 89% 70%;           /* Purple */
+  --chart-2: 326 100% 65%;          /* Pink */
+  --chart-3: 191 97% 60%;           /* Cyan */
+  --chart-4: 135 94% 50%;           /* Green */
+  --chart-5: 31 100% 60%;           /* Orange */
+}
+
+/* ========================================
+   DRACULA DARK
+   ======================================== */
+.dark[data-theme="dracula"] {
+  /* Surfaces */
+  --background: 231 15% 18%;        /* #282a36 */
+  --foreground: 60 30% 96%;         /* #f8f8f2 */
+  --card: 232 14% 21%;              /* #2d2f3d */
+  --card-foreground: 60 30% 96%;
+  --popover: 232 14% 21%;
+  --popover-foreground: 60 30% 96%;
+
+  /* Primary - Purple */
+  --primary: 265 89% 78%;           /* #bd93f9 */
+  --primary-foreground: 231 15% 13%;
+
+  /* Secondary - Pink */
+  --secondary: 326 100% 74%;        /* #ff79c6 */
+  --secondary-foreground: 231 15% 13%;
+
+  /* Muted */
+  --muted: 231 12% 25%;             /* #44475a */
+  --muted-foreground: 60 10% 65%;
+
+  /* Accent - Cyan */
+  --accent: 191 97% 77%;            /* #8be9fd */
+  --accent-foreground: 231 15% 13%;
+
+  /* Destructive */
+  --destructive: 0 100% 67%;        /* #ff5555 */
+  --destructive-foreground: 0 0% 100%;
+
+  /* Borders & Inputs */
+  --border: 231 12% 28%;
+  --input: 231 12% 28%;
+  --ring: 265 89% 78%;
+
+  /* Sidebar */
+  --sidebar-background: 231 15% 15%;
+  --sidebar-foreground: 60 20% 85%;
+  --sidebar-primary: 265 89% 78%;
+  --sidebar-primary-foreground: 231 15% 13%;
+  --sidebar-accent: 231 14% 22%;
+  --sidebar-accent-foreground: 60 30% 96%;
+  --sidebar-border: 231 12% 25%;
+  --sidebar-ring: 265 89% 78%;
+
+  /* Chart Colors */
+  --chart-1: 265 89% 78%;
+  --chart-2: 326 100% 74%;
+  --chart-3: 191 97% 77%;
+  --chart-4: 135 94% 65%;
+  --chart-5: 31 100% 71%;
+}

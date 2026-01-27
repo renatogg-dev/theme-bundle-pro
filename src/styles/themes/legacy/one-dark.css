@@ -1,0 +1,122 @@
+/*
+ * ONE DARK THEME
+ * Original: Atom editor's One Dark theme
+ * Clean, balanced dark theme with muted colors
+ * 
+ * Core Palette:
+ * - Background: #282c34
+ * - Blue: #61afef
+ * - Purple: #c678dd
+ * - Cyan: #56b6c2
+ * - Green: #98c379
+ */
+
+/* ========================================
+   ONE DARK LIGHT (One Light variant)
+   ======================================== */
+[data-theme="one-dark"] {
+  /* Surfaces */
+  --background: 230 15% 97%;        /* #fafafa-ish */
+  --foreground: 230 8% 24%;         /* #383a42 */
+  --card: 230 18% 99%;
+  --card-foreground: 230 8% 24%;
+  --popover: 230 18% 99%;
+  --popover-foreground: 230 8% 24%;
+
+  /* Primary - Blue */
+  --primary: 207 80% 45%;           /* #0083c9 - darker for light */
+  --primary-foreground: 0 0% 100%;
+
+  /* Secondary - Purple */
+  --secondary: 286 60% 50%;         /* #a626a4 */
+  --secondary-foreground: 0 0% 100%;
+
+  /* Muted */
+  --muted: 230 10% 92%;
+  --muted-foreground: 230 6% 45%;
+
+  /* Accent - Cyan */
+  --accent: 180 50% 40%;            /* #0e8b93 */
+  --accent-foreground: 0 0% 100%;
+
+  /* Destructive - Red */
+  --destructive: 355 65% 50%;       /* #ca1243 */
+  --destructive-foreground: 0 0% 100%;
+
+  /* Borders & Inputs */
+  --border: 230 10% 85%;
+  --input: 230 10% 85%;
+  --ring: 207 80% 45%;
+
+  /* Sidebar */
+  --sidebar-background: 230 15% 95%;
+  --sidebar-foreground: 230 8% 30%;
+  --sidebar-primary: 207 80% 45%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 230 12% 90%;
+  --sidebar-accent-foreground: 230 8% 24%;
+  --sidebar-border: 230 10% 82%;
+  --sidebar-ring: 207 80% 45%;
+
+  /* Chart Colors */
+  --chart-1: 207 80% 50%;           /* Blue */
+  --chart-2: 286 60% 55%;           /* Purple */
+  --chart-3: 180 50% 45%;           /* Cyan */
+  --chart-4: 95 45% 45%;            /* Green */
+  --chart-5: 29 90% 50%;            /* Orange */
+}
+
+/* ========================================
+   ONE DARK
+   ======================================== */
+.dark[data-theme="one-dark"] {
+  /* Surfaces */
+  --background: 220 13% 18%;        /* #282c34 */
+  --foreground: 219 14% 71%;        /* #abb2bf */
+  --card: 220 13% 21%;              /* #2c313c */
+  --card-foreground: 219 14% 71%;
+  --popover: 220 13% 21%;
+  --popover-foreground: 219 14% 71%;
+
+  /* Primary - Blue */
+  --primary: 207 82% 66%;           /* #61afef */
+  --primary-foreground: 220 13% 15%;
+
+  /* Secondary - Magenta */
+  --secondary: 286 60% 67%;         /* #c678dd */
+  --secondary-foreground: 220 13% 15%;
+
+  /* Muted */
+  --muted: 220 12% 25%;             /* #3e4451 */
+  --muted-foreground: 219 10% 55%;
+
+  /* Accent - Cyan */
+  --accent: 187 47% 55%;            /* #56b6c2 */
+  --accent-foreground: 220 13% 15%;
+
+  /* Destructive - Red */
+  --destructive: 355 65% 65%;       /* #e06c75 */
+  --destructive-foreground: 0 0% 100%;
+
+  /* Borders & Inputs */
+  --border: 220 13% 28%;
+  --input: 220 13% 28%;
+  --ring: 207 82% 66%;
+
+  /* Sidebar */
+  --sidebar-background: 220 13% 15%;
+  --sidebar-foreground: 219 14% 65%;
+  --sidebar-primary: 207 82% 66%;
+  --sidebar-primary-foreground: 220 13% 15%;
+  --sidebar-accent: 220 13% 22%;
+  --sidebar-accent-foreground: 219 14% 71%;
+  --sidebar-border: 220 12% 25%;
+  --sidebar-ring: 207 82% 66%;
+
+  /* Chart Colors - One Dark palette */
+  --chart-1: 207 82% 66%;           /* Blue */
+  --chart-2: 286 60% 67%;           /* Purple */
+  --chart-3: 187 47% 55%;           /* Cyan */
+  --chart-4: 95 38% 62%;            /* Green */
+  --chart-5: 29 54% 61%;            /* Orange */
+}

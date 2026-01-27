@@ -1,0 +1,120 @@
+/*
+ * SOLAR FLARE THEME
+ * Inspired by warm schemes (Gruvbox/Monokai) adapted for high contrast
+ * Vibrant energy with amber and red accents
+ * 
+ * Core Palette:
+ * - Background: #1d1816 (dark) / #fef7ed (light)
+ * - Primary: #f59e0b (amber)
+ * - Accent: #ef4444 (red)
+ */
+
+/* ========================================
+   SOLAR FLARE LIGHT
+   ======================================== */
+[data-theme="solar-flare"] {
+  /* Surfaces */
+  --background: 35 100% 97%;        /* #fef7ed - warm cream */
+  --foreground: 30 15% 15%;         /* #2a2420 */
+  --card: 35 80% 99%;
+  --card-foreground: 30 15% 15%;
+  --popover: 35 80% 99%;
+  --popover-foreground: 30 15% 15%;
+
+  /* Primary - Amber (darker for light mode) */
+  --primary: 30 95% 45%;            /* #d97706 */
+  --primary-foreground: 0 0% 100%;
+
+  /* Secondary - Orange-red */
+  --secondary: 15 90% 50%;          /* #ea580c */
+  --secondary-foreground: 0 0% 100%;
+
+  /* Muted */
+  --muted: 35 40% 92%;
+  --muted-foreground: 30 15% 45%;
+
+  /* Accent - Red */
+  --accent: 0 85% 55%;              /* #dc2626 */
+  --accent-foreground: 0 0% 100%;
+
+  /* Destructive */
+  --destructive: 0 84% 50%;
+  --destructive-foreground: 0 0% 100%;
+
+  /* Borders & Inputs */
+  --border: 35 30% 85%;
+  --input: 35 30% 85%;
+  --ring: 30 95% 45%;
+
+  /* Sidebar */
+  --sidebar-background: 35 60% 95%;
+  --sidebar-foreground: 30 15% 25%;
+  --sidebar-primary: 30 95% 45%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 35 50% 90%;
+  --sidebar-accent-foreground: 30 15% 15%;
+  --sidebar-border: 35 30% 82%;
+  --sidebar-ring: 30 95% 45%;
+
+  /* Chart Colors */
+  --chart-1: 30 95% 50%;            /* Amber */
+  --chart-2: 0 85% 55%;             /* Red */
+  --chart-3: 50 90% 50%;            /* Yellow */
+  --chart-4: 15 90% 55%;            /* Orange */
+  --chart-5: 350 80% 55%;           /* Rose */
+}
+
+/* ========================================
+   SOLAR FLARE DARK
+   ======================================== */
+.dark[data-theme="solar-flare"] {
+  /* Surfaces */
+  --background: 30 15% 9%;          /* #1d1816 - warm black */
+  --foreground: 40 30% 88%;         /* #efe0c8 */
+  --card: 30 15% 12%;               /* #251f1b */
+  --card-foreground: 40 30% 88%;
+  --popover: 30 15% 12%;
+  --popover-foreground: 40 30% 88%;
+
+  /* Primary - Amber */
+  --primary: 35 95% 55%;            /* #f59e0b */
+  --primary-foreground: 30 15% 8%;
+
+  /* Secondary - Orange */
+  --secondary: 20 90% 50%;          /* #ea580c */
+  --secondary-foreground: 30 15% 8%;
+
+  /* Muted */
+  --muted: 30 10% 16%;
+  --muted-foreground: 40 15% 55%;
+
+  /* Accent - Vibrant Red */
+  --accent: 0 75% 55%;              /* #ef4444 */
+  --accent-foreground: 0 0% 100%;
+
+  /* Destructive */
+  --destructive: 0 85% 50%;
+  --destructive-foreground: 0 0% 100%;
+
+  /* Borders & Inputs */
+  --border: 30 10% 22%;
+  --input: 30 10% 22%;
+  --ring: 35 95% 55%;
+
+  /* Sidebar */
+  --sidebar-background: 30 15% 7%;
+  --sidebar-foreground: 40 25% 80%;
+  --sidebar-primary: 35 95% 55%;
+  --sidebar-primary-foreground: 30 15% 8%;
+  --sidebar-accent: 30 12% 14%;
+  --sidebar-accent-foreground: 40 30% 88%;
+  --sidebar-border: 30 10% 20%;
+  --sidebar-ring: 35 95% 55%;
+
+  /* Chart Colors - Warm energy */
+  --chart-1: 35 95% 55%;            /* Amber */
+  --chart-2: 0 75% 55%;             /* Red */
+  --chart-3: 50 95% 55%;            /* Yellow */
+  --chart-4: 20 90% 55%;            /* Orange */
+  --chart-5: 350 85% 60%;           /* Rose */
+}
