@@ -125,7 +125,7 @@ export function PreviewCodeBlock() {
               <span className="token-variable">{"<ThemeProvider"}</span>{" "}
               <span className="token-function">config</span>
               <span className="token-operator">=</span>
-              {"{"}config{"}"}>
+              {"{"}config{"}>"}
             </Line>
             <Line num={21}>
               {"      "}
