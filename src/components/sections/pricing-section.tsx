@@ -4,10 +4,7 @@ import { Check, Sparkles, ExternalLink } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
-import { buildGumroadUrl, getGumroadProducts, type ProductType } from "@/lib/gumroad";
-
-// Get product configuration from environment
-const products = getGumroadProducts();
+import { buildGumroadUrl, type ProductType } from "@/lib/gumroad";
 
 const plans: Array<{
   name: string;
@@ -19,13 +16,12 @@ const plans: Array<{
   productType: ProductType;
 }> = [
   {
-    name: products.single.name,
-    price: `$${products.single.price}`,
-    description: products.single.description,
+    name: "Single Theme",
+    price: "$9",
+    description: "One customized theme for 19 platforms",
     features: [
-      "1 theme of your choice",
+      "1 fully customizable theme",
       "Light & Dark modes",
-      "CSS variables file",
       "Exported to 19 platforms",
       "Personal & commercial use",
     ],
@@ -34,36 +30,19 @@ const plans: Array<{
     productType: "single",
   },
   {
-    name: products.bundle.name,
-    price: `$${products.bundle.price}`,
-    description: products.bundle.description,
+    name: "Full Bundle",
+    price: "$49",
+    description: "13 ready themes + 1 custom bonus",
     features: [
-      "All 13 themes included",
-      "26 total variations",
-      "TypeScript support",
-      "Theme switcher component",
-      "Lifetime updates",
-      "Priority support",
+      "All 13 pre-made themes",
+      "1 fully customizable bonus theme",
+      "Light & Dark modes (26 variations)",
+      "Exported to 19 platforms",
+      "Personal & commercial use",
     ],
     popular: true,
     cta: "Get Full Bundle",
     productType: "bundle",
-  },
-  {
-    name: products.team.name,
-    price: `$${products.team.price}`,
-    description: products.team.description,
-    features: [
-      "Everything in Full Bundle",
-      "Up to 10 team members",
-      "Shared license",
-      "Custom theme requests",
-      "Slack support channel",
-      "Early access to new themes",
-    ],
-    popular: false,
-    cta: "Contact Sales",
-    productType: "team",
   },
 ];
 
@@ -77,12 +56,12 @@ export function PricingSection() {
             Simple Pricing
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
-            One-time purchase. Lifetime access. No subscriptions.
+            One-time purchase. Customize, download, done. No subscriptions.
           </p>
         </div>
 
         {/* Pricing Cards */}
-        <div className="grid gap-8 lg:grid-cols-3">
+        <div className="grid gap-8 md:grid-cols-2 max-w-3xl mx-auto">
           {plans.map((plan, index) => {
             const gumroadUrl = buildGumroadUrl(plan.productType);
             const isConfigured = !gumroadUrl.startsWith("#");

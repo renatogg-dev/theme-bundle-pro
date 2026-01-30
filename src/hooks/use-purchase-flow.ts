@@ -12,6 +12,7 @@ import {
   buildGumroadUrl, 
   getGumroadProducts, 
   isGumroadConfigured,
+  isValidGumroadUrl,
   type ProductType 
 } from "@/lib/gumroad";
 
@@ -144,6 +145,13 @@ export function usePurchaseFlow(options: UsePurchaseFlowOptions) {
           return;
         }
         
+        // Security: Validate URL is a legitimate Gumroad URL (CWE-601 prevention)
+        if (!isValidGumroadUrl(url)) {
+          setError("Invalid redirect URL detected. Please contact support.");
+          console.error("Open Redirect attempt blocked:", url);
+          return;
+        }
+        
         // Redirect to Gumroad
         window.location.href = url;
       } catch {
@@ -162,6 +170,12 @@ export function usePurchaseFlow(options: UsePurchaseFlowOptions) {
       
       if (url.startsWith("#")) {
         console.warn("Gumroad is not configured for product type:", productType);
+        return;
+      }
+      
+      // Security: Validate URL is a legitimate Gumroad URL (CWE-601 prevention)
+      if (!isValidGumroadUrl(url)) {
+        console.error("Open Redirect attempt blocked:", url);
         return;
       }
       

@@ -11,6 +11,23 @@
 import { createHmac } from "crypto";
 
 /**
+ * Validate that a URL is a legitimate Gumroad URL
+ * Prevents Open Redirect vulnerabilities (CWE-601)
+ */
+export function isValidGumroadUrl(url: string): boolean {
+  try {
+    const parsed = new URL(url);
+    // Only allow gumroad.com and its subdomains
+    return (
+      parsed.hostname === "gumroad.com" ||
+      parsed.hostname.endsWith(".gumroad.com")
+    );
+  } catch {
+    return false;
+  }
+}
+
+/**
  * Verify Gumroad webhook signature
  * Gumroad signs webhooks with HMAC-SHA256
  */
@@ -144,7 +161,7 @@ export function getGumroadProducts(): Record<ProductType, ProductConfig> {
       url: process.env.NEXT_PUBLIC_GUMROAD_BUNDLE_URL || "",
       price: 49,
       name: "Full Bundle",
-      description: "Unlimited themes + lifetime updates",
+      description: "All 13 themes + 1 custom bonus theme",
     },
     team: {
       url: process.env.NEXT_PUBLIC_GUMROAD_TEAM_URL || "",

@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "generate-themes": "tsx scripts/generate-all-themes.ts"
   },
   "dependencies": {
     "@radix-ui/react-checkbox": "^1.3.3",
@@ -19,12 +20,14 @@
     "@supabase/supabase-js": "^2.93.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "jose": "^6.1.3",
     "jszip": "^3.10.1",
     "lucide-react": "^0.468.0",
-    "next": "^14.2.21",
+    "next": "^16.1.5",
     "next-themes": "^0.4.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "resend": "^6.9.1",
     "tailwind-merge": "^2.6.0"
   },
   "devDependencies": {
@@ -32,9 +35,10 @@
     "@types/react": "^18.3.18",
     "@types/react-dom": "^18.3.5",
     "eslint": "^9.0.0",
-    "eslint-config-next": "^15.0.0",
+    "eslint-config-next": "^16.1.5",
     "postcss": "^8.4.49",
     "tailwindcss": "^3.4.17",
+    "tsx": "^4.21.0",
     "typescript": "^5.7.2"
   }
 }

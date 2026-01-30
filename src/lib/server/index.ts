@@ -23,3 +23,14 @@ export {
   cleanExpiredTokens,
 } from "./downloads-store";
 export type { DownloadToken } from "./downloads-store";
+
+export {
+  createBuyerAccess,
+  validateBuyerAccess,
+  getBuyerAccessById,
+  markAccessAsUsed,
+  getAccessByPurchaseId,
+  cleanExpiredBuyerAccess,
+  generateVerificationCode,
+} from "./buyer-access-store";
+export type { BuyerAccess } from "./buyer-access-store";

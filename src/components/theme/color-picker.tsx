@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useId, useRef, useState, useEffect } from "react";
-import { hslToHex, type HSLColor } from "@/lib/color-utils";
+import { hslToHex, hslToRgb, hexToHsl, type HSLColor } from "@/lib/color-utils";
 import { cn } from "@/lib/utils";
 
 export interface ColorPickerProps {
@@ -91,31 +91,182 @@ export function ColorPicker({
 
       {/* Custom color picker popup */}
       {isOpen && !disabled && (
-        <div className="absolute left-0 top-full z-50 mt-2 rounded-lg border bg-popover p-3 shadow-lg">
-          {/* Saturation/Lightness area */}
-          <SaturationLightnessArea
-            hue={value.h}
-            saturation={value.s}
-            lightness={value.l}
-            onChange={handleSaturationLightnessChange}
-          />
-
-          {/* Hue slider */}
-          <HueSlider hue={value.h} onChange={handleHueChange} />
-
-          {/* Preview swatch */}
-          <div className="mt-3 flex items-center gap-2">
-            <div
-              className="h-8 flex-1 rounded border"
-              style={{ backgroundColor: currentColor }}
-            />
-          </div>
-        </div>
+        <ColorPickerPopup
+          value={value}
+          onHueChange={handleHueChange}
+          onSaturationLightnessChange={handleSaturationLightnessChange}
+          onColorChange={onChange}
+        />
       )}
 
       {description && (
         <p className="text-xs text-muted-foreground">{description}</p>
       )}
+    </div>
+  );
+}
+
+/**
+ * Color picker popup with editable values
+ */
+interface ColorPickerPopupProps {
+  value: HSLColor;
+  onHueChange: (hue: number) => void;
+  onSaturationLightnessChange: (saturation: number, lightness: number) => void;
+  onColorChange?: (color: HSLColor) => void;
+}
+
+function ColorPickerPopup({
+  value,
+  onHueChange,
+  onSaturationLightnessChange,
+  onColorChange,
+}: ColorPickerPopupProps) {
+  const currentHex = hslToHex(value);
+  const currentRgb = hslToRgb(value);
+
+  // Local state for editable inputs
+  const [hexInput, setHexInput] = useState(currentHex.toUpperCase());
+  const [rgbInput, setRgbInput] = useState(`${currentRgb.r}, ${currentRgb.g}, ${currentRgb.b}`);
+  const [hslInput, setHslInput] = useState(`${value.h}, ${value.s}, ${value.l}`);
+
+  // Update local inputs when value changes externally
+  useEffect(() => {
+    setHexInput(currentHex.toUpperCase());
+    setRgbInput(`${currentRgb.r}, ${currentRgb.g}, ${currentRgb.b}`);
+    setHslInput(`${value.h}, ${value.s}, ${value.l}`);
+  }, [currentHex, currentRgb.r, currentRgb.g, currentRgb.b, value.h, value.s, value.l]);
+
+  // Handle HEX input change
+  const handleHexChange = (input: string) => {
+    setHexInput(input);
+    const hex = input.startsWith("#") ? input : `#${input}`;
+    if (/^#[A-Fa-f0-9]{6}$/.test(hex)) {
+      const hsl = hexToHsl(hex);
+      if (onColorChange) {
+        onColorChange(hsl);
+      } else {
+        onHueChange(hsl.h);
+        onSaturationLightnessChange(hsl.s, hsl.l);
+      }
+    }
+  };
+
+  // Handle RGB input change
+  const handleRgbChange = (input: string) => {
+    setRgbInput(input);
+    const parts = input.split(/[\s,]+/).map(Number);
+    if (parts.length >= 3 && parts.every(n => !isNaN(n) && n >= 0 && n <= 255)) {
+      const [r, g, b] = parts;
+      // Convert RGB to HSL
+      const rNorm = r / 255;
+      const gNorm = g / 255;
+      const bNorm = b / 255;
+      const max = Math.max(rNorm, gNorm, bNorm);
+      const min = Math.min(rNorm, gNorm, bNorm);
+      const l = (max + min) / 2;
+      let h = 0, s = 0;
+      if (max !== min) {
+        const d = max - min;
+        s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+        switch (max) {
+          case rNorm: h = ((gNorm - bNorm) / d + (gNorm < bNorm ? 6 : 0)) / 6; break;
+          case gNorm: h = ((bNorm - rNorm) / d + 2) / 6; break;
+          case bNorm: h = ((rNorm - gNorm) / d + 4) / 6; break;
+        }
+      }
+      const hsl: HSLColor = {
+        h: Math.round(h * 360),
+        s: Math.round(s * 100),
+        l: Math.round(l * 100),
+      };
+      if (onColorChange) {
+        onColorChange(hsl);
+      } else {
+        onHueChange(hsl.h);
+        onSaturationLightnessChange(hsl.s, hsl.l);
+      }
+    }
+  };
+
+  // Handle HSL input change
+  const handleHslChange = (input: string) => {
+    setHslInput(input);
+    const parts = input.split(/[\s,°%]+/).filter(Boolean).map(Number);
+    if (parts.length >= 3 && parts.every(n => !isNaN(n))) {
+      const [h, s, l] = parts;
+      if (h >= 0 && h <= 360 && s >= 0 && s <= 100 && l >= 0 && l <= 100) {
+        const hsl: HSLColor = { h, s, l };
+        if (onColorChange) {
+          onColorChange(hsl);
+        } else {
+          onHueChange(h);
+          onSaturationLightnessChange(s, l);
+        }
+      }
+    }
+  };
+
+  const inputClass = "flex-1 rounded bg-muted px-2 py-1 font-mono text-xs border-0 focus:outline-none focus:ring-1 focus:ring-primary";
+
+  return (
+    <div className="absolute left-0 top-full z-50 mt-2 rounded-lg border bg-popover p-3 shadow-lg">
+      {/* Saturation/Lightness area */}
+      <SaturationLightnessArea
+        hue={value.h}
+        saturation={value.s}
+        lightness={value.l}
+        onChange={onSaturationLightnessChange}
+      />
+
+      {/* Hue slider */}
+      <HueSlider hue={value.h} onChange={onHueChange} />
+
+      {/* Editable color values */}
+      <div className="mt-3 space-y-1.5">
+        {/* HEX */}
+        <div className="flex items-center gap-2">
+          <span className="w-8 text-[10px] font-medium text-muted-foreground">HEX</span>
+          <input
+            type="text"
+            value={hexInput}
+            onChange={(e) => handleHexChange(e.target.value)}
+            className={inputClass}
+            placeholder="#000000"
+            maxLength={7}
+          />
+        </div>
+        {/* RGB */}
+        <div className="flex items-center gap-2">
+          <span className="w-8 text-[10px] font-medium text-muted-foreground">RGB</span>
+          <input
+            type="text"
+            value={rgbInput}
+            onChange={(e) => handleRgbChange(e.target.value)}
+            className={inputClass}
+            placeholder="0, 0, 0"
+          />
+        </div>
+        {/* HSL */}
+        <div className="flex items-center gap-2">
+          <span className="w-8 text-[10px] font-medium text-muted-foreground">HSL</span>
+          <input
+            type="text"
+            value={hslInput}
+            onChange={(e) => handleHslChange(e.target.value)}
+            className={inputClass}
+            placeholder="0, 0, 0"
+          />
+        </div>
+      </div>
+
+      {/* Preview swatch */}
+      <div className="mt-3 flex items-center gap-2">
+        <div
+          className="h-6 flex-1 rounded border"
+          style={{ backgroundColor: currentHex }}
+        />
+      </div>
     </div>
   );
 }
@@ -367,15 +518,12 @@ export function CompactColorPicker({
       </label>
 
       {isOpen && (
-        <div className="absolute left-0 top-full z-50 mt-1 rounded-lg border bg-popover p-3 shadow-lg">
-          <SaturationLightnessArea
-            hue={value.h}
-            saturation={value.s}
-            lightness={value.l}
-            onChange={handleSaturationLightnessChange}
-          />
-          <HueSlider hue={value.h} onChange={handleHueChange} />
-        </div>
+        <ColorPickerPopup
+          value={value}
+          onHueChange={handleHueChange}
+          onSaturationLightnessChange={handleSaturationLightnessChange}
+          onColorChange={onChange}
+        />
       )}
     </div>
   );

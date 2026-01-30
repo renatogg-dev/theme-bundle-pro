@@ -50,10 +50,10 @@ const features = [
       "Pure CSS variables. Works with any framework. No runtime JS overhead.",
   },
   {
-    icon: RefreshCw,
+    icon: Zap,
     title: "Buy via Gumroad",
     description:
-      "Simple checkout, instant download. One-time purchase, lifetime updates.",
+      "Simple checkout, instant access. Customize your themes and download instantly.",
   },
   {
     icon: Code,

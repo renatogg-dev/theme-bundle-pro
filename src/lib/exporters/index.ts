@@ -53,7 +53,10 @@ import { exportFirefox } from "./firefox";
 import { exportInsomnia } from "./insomnia";
 import { exportRaycast } from "./raycast";
 import { exportSlack } from "./slack";
-import type { ThemeConfig, ExportResult, Exporter } from "./types";
+import type { ThemeConfig, DualThemeConfig, ExportResult, Exporter } from "./types";
+
+// Re-export DualThemeConfig explicitly for clarity
+export type { DualThemeConfig };
 
 /**
  * All available exporters

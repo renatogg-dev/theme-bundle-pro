@@ -10,7 +10,7 @@ import { HSLColor, hslToHex } from "@/lib/color-utils";
 // ============================================================================
 
 /**
- * Complete theme configuration for export
+ * Complete theme configuration for export (single mode)
  */
 export interface ThemeConfig {
   /** Slug name for filenames (e.g., "dracula", "my-custom-theme") */
@@ -21,6 +21,22 @@ export interface ThemeConfig {
   author?: string;
   /** Theme colors in HSL format */
   colors: ThemeColors;
+}
+
+/**
+ * Dual theme configuration for export (light + dark modes)
+ */
+export interface DualThemeConfig {
+  /** Slug name for filenames (e.g., "dracula", "my-custom-theme") */
+  name: string;
+  /** Display name for UI (e.g., "Dracula", "My Custom Theme") */
+  displayName: string;
+  /** Theme author */
+  author?: string;
+  /** Light mode colors */
+  light: ThemeColors;
+  /** Dark mode colors */
+  dark: ThemeColors;
 }
 
 /**

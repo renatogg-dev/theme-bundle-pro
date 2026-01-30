@@ -1,16 +1,8 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-/* === BASE VARIABLES === */
+/* === CSS IMPORTS (must be first) === */
 @import "./themes/_variables.css";
-
-/* === FLAGSHIP THEMES === */
 @import "./themes/flagships/deep-space.css";
 @import "./themes/flagships/mint-carbon.css";
 @import "./themes/flagships/solar-flare.css";
-
-/* === LEGACY COLLECTION === */
 @import "./themes/legacy/dracula.css";
 @import "./themes/legacy/nord.css";
 @import "./themes/legacy/monokai.css";
@@ -21,6 +13,10 @@
 @import "./themes/legacy/synthwave.css";
 @import "./themes/legacy/solarized.css";
 @import "./themes/legacy/github.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @layer base {
   * {
