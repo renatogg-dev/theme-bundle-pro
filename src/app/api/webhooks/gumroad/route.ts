@@ -8,7 +8,7 @@
  */
 
 import { NextResponse } from "next/server";
-import { verifyGumroadSignature, parseGumroadWebhook } from "@/lib/gumroad";
+import { parseGumroadWebhook } from "@/lib/gumroad";
 import { sendBuyerAccessEmail } from "@/lib/email";
 import { getSession, deleteSession, createBuyerAccess, getAccessByPurchaseId } from "@/lib/server";
 import type { ThemeConfig } from "@/lib/exporters/types";
@@ -20,34 +20,34 @@ import type { ThemeConfig } from "@/lib/exporters/types";
  */
 export async function POST(request: Request) {
   try {
-    // Get raw body for signature verification
+    // Get raw body
     const body = await request.text();
-
-    // Verify webhook signature (in production)
-    const signature = request.headers.get("x-gumroad-signature");
-    const secret = process.env.GUMROAD_WEBHOOK_SECRET;
-
-    if (secret && signature) {
-      const isValid = verifyGumroadSignature(body, signature, secret);
-      if (!isValid) {
-        console.error("Invalid Gumroad webhook signature");
-        return NextResponse.json(
-          { error: "Invalid signature" },
-          { status: 401 }
-        );
-      }
-    } else if (process.env.NODE_ENV === "production") {
-      console.warn("Gumroad webhook secret not configured");
-    }
-
+    
     // Parse webhook data
     const formData = new URLSearchParams(body);
+    
+    // Verify seller_id (Gumroad's way of validating webhooks)
+    const sellerId = formData.get("seller_id");
+    const expectedSellerId = process.env.GUMROAD_WEBHOOK_SECRET;
+    
+    if (expectedSellerId && sellerId !== expectedSellerId) {
+      console.error("Invalid seller_id in webhook:", { received: sellerId, expected: expectedSellerId });
+      return NextResponse.json(
+        { error: "Invalid seller_id" },
+        { status: 401 }
+      );
+    }
+    
     const webhookData = parseGumroadWebhook(formData);
+    
+    // Log ALL received data for debugging
+    console.log("📦 Gumroad webhook RAW data:", Object.fromEntries(formData.entries()));
 
     // Log for debugging
-    console.log("📦 Gumroad webhook received:", {
+    console.log("📦 Gumroad webhook parsed:", {
       saleId: webhookData.saleId,
       email: webhookData.email,
+      permalink: webhookData.permalink,
       productId: webhookData.productId,
       productName: webhookData.productName,
       urlParams: webhookData.urlParams,
@@ -71,8 +71,8 @@ export async function POST(request: Request) {
       });
     }
 
-    // Determine product type based on productId or productName
-    const productType = determineProductType(webhookData.productId, webhookData.productName);
+    // Determine product type based on permalink, productId or productName
+    const productType = determineProductType(webhookData.permalink, webhookData.productId, webhookData.productName);
     console.log("Product type determined:", productType);
 
     // Get session data for Single Theme (contains selected theme and pre-customization)
@@ -161,17 +161,27 @@ export async function GET() {
 }
 
 /**
- * Determine product type based on Gumroad product ID or product name
+ * Determine product type based on Gumroad permalink, product ID, or product name
  * 
  * Configuration via environment variables:
- * - GUMROAD_SINGLE_PRODUCT_ID: Product ID for Single Theme ($9)
- * - GUMROAD_BUNDLE_PRODUCT_ID: Product ID for Full Bundle ($49)
+ * - GUMROAD_SINGLE_PRODUCT_ID: Permalink or Product ID for Single Theme ($19.99)
+ * - GUMROAD_BUNDLE_PRODUCT_ID: Permalink or Product ID for Full Bundle ($49.99)
  */
-function determineProductType(productId: string, productName: string): "single" | "bundle" {
+function determineProductType(permalink: string, productId: string, productName: string): "single" | "bundle" {
   const singleProductId = process.env.GUMROAD_SINGLE_PRODUCT_ID;
   const bundleProductId = process.env.GUMROAD_BUNDLE_PRODUCT_ID;
 
-  // Match by product ID first (most reliable)
+  console.log("Determining product type:", { permalink, productId, productName, singleProductId, bundleProductId });
+
+  // Match by permalink first (user's custom URL like "theme-package-pro")
+  if (singleProductId && permalink === singleProductId) {
+    return "single";
+  }
+  if (bundleProductId && permalink === bundleProductId) {
+    return "bundle";
+  }
+
+  // Match by product ID
   if (singleProductId && productId === singleProductId) {
     return "single";
   }
@@ -181,14 +191,14 @@ function determineProductType(productId: string, productName: string): "single" 
 
   // Fallback to product name matching
   const nameLower = productName.toLowerCase();
-  if (nameLower.includes("bundle") || nameLower.includes("full") || nameLower.includes("all")) {
+  if (nameLower.includes("package") || nameLower.includes("bundle") || nameLower.includes("full") || nameLower.includes("all")) {
     return "bundle";
   }
-  if (nameLower.includes("single") || nameLower.includes("theme")) {
+  if (nameLower.includes("single") || nameLower.includes("studio")) {
     return "single";
   }
 
-  // Default to single if can't determine
-  console.warn("Could not determine product type, defaulting to single:", { productId, productName });
-  return "single";
+  // Default to bundle if can't determine (safer for customer)
+  console.warn("Could not determine product type, defaulting to bundle:", { permalink, productId, productName });
+  return "bundle";
 }
