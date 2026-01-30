@@ -131,6 +131,107 @@ export function parseGumroadWebhook(formData: URLSearchParams): GumroadWebhookPa
 }
 
 /**
+ * License verification result
+ */
+export interface LicenseVerificationResult {
+  valid: boolean;
+  productType?: "single" | "bundle";
+  productId?: string;
+  email?: string;
+  fullName?: string;
+  uses?: number;
+  test?: boolean;
+  purchaseId?: string;
+  refunded?: boolean;
+}
+
+/**
+ * Verify a license key via Gumroad API
+ * Tries both product IDs to determine which product was purchased
+ * 
+ * @param licenseKey - The license key to verify (format: XXXXXXXX-XXXXXXXX-XXXXXXXX-XXXXXXXX)
+ * @param incrementUses - Whether to increment the uses count (default: true)
+ * @returns Verification result with product type and buyer info
+ */
+export async function verifyLicenseKey(
+  licenseKey: string,
+  incrementUses: boolean = true
+): Promise<LicenseVerificationResult> {
+  const singleProductId = process.env.GUMROAD_SINGLE_PRODUCT_ID;
+  const bundleProductId = process.env.GUMROAD_BUNDLE_PRODUCT_ID;
+
+  // Try to verify with both product IDs
+  const productIds: Array<{ id: string; type: "single" | "bundle" }> = [];
+  
+  if (singleProductId) {
+    productIds.push({ id: singleProductId, type: "single" });
+  }
+  if (bundleProductId) {
+    productIds.push({ id: bundleProductId, type: "bundle" });
+  }
+
+  if (productIds.length === 0) {
+    console.error("No Gumroad product IDs configured");
+    return { valid: false };
+  }
+
+  for (const product of productIds) {
+    try {
+      const response = await fetch("https://api.gumroad.com/v2/licenses/verify", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: new URLSearchParams({
+          product_id: product.id,
+          license_key: licenseKey,
+          increment_uses_count: incrementUses ? "true" : "false",
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        const purchase = data.purchase || {};
+        
+        // Check if refunded
+        if (purchase.refunded) {
+          console.log("License key was refunded:", licenseKey.slice(0, 8) + "...");
+          return {
+            valid: false,
+            refunded: true,
+          };
+        }
+
+        console.log("License key verified:", {
+          productType: product.type,
+          email: purchase.email,
+          uses: data.uses,
+          test: purchase.test,
+        });
+
+        return {
+          valid: true,
+          productType: product.type,
+          productId: product.id,
+          email: purchase.email,
+          fullName: purchase.full_name,
+          uses: data.uses,
+          test: purchase.test === true,
+          purchaseId: purchase.id || purchase.sale_id,
+          refunded: false,
+        };
+      }
+    } catch (error) {
+      console.error(`Error verifying license with product ${product.type}:`, error);
+    }
+  }
+
+  // No valid product found
+  return { valid: false };
+}
+
+/**
  * Product types available for purchase
  */
 export type ProductType = "single" | "bundle" | "team";

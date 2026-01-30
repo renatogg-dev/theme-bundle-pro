@@ -8,10 +8,27 @@ import { Button } from "@/components/ui/button";
 
 export default function BuyerLoginPage() {
   const router = useRouter();
-  const [email, setEmail] = useState("");
-  const [code, setCode] = useState("");
+  const [licenseKey, setLicenseKey] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+
+  // Format license key as user types (add dashes)
+  const formatLicenseKey = (value: string): string => {
+    // Remove all non-alphanumeric characters
+    const cleaned = value.replace(/[^a-zA-Z0-9]/g, "").toUpperCase();
+    
+    // Split into groups of 8 and join with dashes
+    const groups = cleaned.match(/.{1,8}/g) || [];
+    return groups.slice(0, 4).join("-");
+  };
+
+  const handleLicenseKeyChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const formatted = formatLicenseKey(e.target.value);
+    setLicenseKey(formatted);
+  };
+
+  // Check if license key is complete (35 chars = 32 alphanumeric + 3 dashes)
+  const isValidLicenseKey = licenseKey.replace(/-/g, "").length === 32;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -22,13 +39,13 @@ export default function BuyerLoginPage() {
       const response = await fetch("/api/buyer/auth", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, code }),
+        body: JSON.stringify({ licenseKey }),
       });
 
       const data = await response.json();
 
       if (!response.ok) {
-        setError(data.error || "Invalid credentials. Please try again.");
+        setError(data.error || "Invalid license key. Please try again.");
         return;
       }
 
@@ -61,47 +78,31 @@ export default function BuyerLoginPage() {
           <CardHeader className="text-center">
             <CardTitle className="text-2xl">Access Your Theme</CardTitle>
             <CardDescription>
-              Enter your email and the verification code sent to you after purchase
+              Enter the license key you received after your purchase
             </CardDescription>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4">
-              {/* Email */}
+              {/* License Key */}
               <div className="space-y-2">
-                <label htmlFor="email" className="text-sm font-medium text-foreground">
-                  Email
+                <label htmlFor="licenseKey" className="text-sm font-medium text-foreground">
+                  License Key
                 </label>
                 <Input
-                  id="email"
-                  type="email"
-                  placeholder="your@email.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                  disabled={loading}
-                  className="h-11"
-                />
-              </div>
-
-              {/* Verification Code */}
-              <div className="space-y-2">
-                <label htmlFor="code" className="text-sm font-medium text-foreground">
-                  Verification Code
-                </label>
-                <Input
-                  id="code"
+                  id="licenseKey"
                   type="text"
-                  placeholder="123456"
-                  value={code}
-                  onChange={(e) => setCode(e.target.value.replace(/\D/g, "").slice(0, 6))}
+                  placeholder="XXXXXXXX-XXXXXXXX-XXXXXXXX-XXXXXXXX"
+                  value={licenseKey}
+                  onChange={handleLicenseKeyChange}
                   required
                   disabled={loading}
-                  className="h-11 text-center text-2xl tracking-[0.5em] font-mono"
-                  maxLength={6}
-                  pattern="[0-9]{6}"
+                  className="h-12 text-center font-mono text-sm tracking-wider"
+                  maxLength={35}
+                  autoComplete="off"
+                  spellCheck={false}
                 />
                 <p className="text-xs text-muted-foreground">
-                  6-digit code from your purchase email
+                  You can find your license key in your Gumroad purchase confirmation
                 </p>
               </div>
 
@@ -116,7 +117,7 @@ export default function BuyerLoginPage() {
               <Button
                 type="submit"
                 className="w-full h-11"
-                disabled={loading || code.length !== 6}
+                disabled={loading || !isValidLicenseKey}
               >
                 {loading ? (
                   <>
@@ -151,7 +152,7 @@ export default function BuyerLoginPage() {
             {/* Help Text */}
             <div className="mt-6 pt-6 border-t border-border">
               <p className="text-sm text-muted-foreground text-center">
-                Don&apos;t have a code?{" "}
+                Don&apos;t have a license key?{" "}
                 <a href="/" className="text-primary hover:underline">
                   Purchase a theme
                 </a>
@@ -163,7 +164,7 @@ export default function BuyerLoginPage() {
         {/* Footer */}
         <p className="text-center text-xs text-muted-foreground mt-8">
           Need help?{" "}
-          <a href="mailto:support@themebundle.com" className="text-primary hover:underline">
+          <a href="mailto:support@theme-bundle-pro.xyz" className="text-primary hover:underline">
             Contact support
           </a>
         </p>

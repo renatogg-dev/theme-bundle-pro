@@ -1,83 +1,86 @@
 /**
  * Buyer Authentication API
- * Validates email + verification code and returns a JWT token
+ * Validates license key via Gumroad API and returns a JWT token
  */
 
 import { NextResponse } from "next/server";
-import { validateBuyerAccess } from "@/lib/server";
-import { createBuyerToken } from "@/lib/jwt";
+import { verifyLicenseKey } from "@/lib/gumroad";
+import { createBuyerToken, hashLicenseKey, verifyBuyerToken, extractTokenFromHeader } from "@/lib/jwt";
 
 interface AuthRequest {
-  email: string;
-  code: string;
+  licenseKey: string;
 }
 
 /**
  * POST /api/buyer/auth
- * Authenticate buyer with email and verification code
+ * Authenticate buyer with Gumroad license key
  */
 export async function POST(request: Request) {
   try {
     const body = await request.json() as AuthRequest;
-    const { email, code } = body;
+    const { licenseKey } = body;
 
     // Validate input
-    if (!email || !code) {
+    if (!licenseKey) {
       return NextResponse.json(
-        { error: "Email and verification code are required" },
+        { error: "License key is required" },
         { status: 400 }
       );
     }
 
-    // Validate code format (6 digits)
-    if (!/^\d{6}$/.test(code)) {
+    // Clean and validate license key format (32 alphanumeric chars, with or without dashes)
+    const cleanedKey = licenseKey.replace(/-/g, "").toUpperCase();
+    if (cleanedKey.length !== 32 || !/^[A-Z0-9]+$/.test(cleanedKey)) {
       return NextResponse.json(
-        { error: "Verification code must be 6 digits" },
+        { error: "Invalid license key format" },
         { status: 400 }
       );
     }
 
-    // Validate credentials
-    const access = await validateBuyerAccess(email, code);
+    // Format the key with dashes for Gumroad API
+    const formattedKey = cleanedKey.match(/.{8}/g)?.join("-") || licenseKey;
 
-    if (!access) {
+    // Verify license key with Gumroad API
+    const verification = await verifyLicenseKey(formattedKey, true);
+
+    if (!verification.valid) {
+      if (verification.refunded) {
+        return NextResponse.json(
+          { error: "This license has been refunded and is no longer valid." },
+          { status: 403 }
+        );
+      }
       return NextResponse.json(
-        { error: "Invalid email or verification code" },
+        { error: "Invalid license key. Please check and try again." },
         { status: 401 }
       );
     }
 
-    // Check if access has already been used
-    if (access.used) {
-      return NextResponse.json(
-        { error: "This access code has already been used. Each code can only be used once." },
-        { status: 403 }
-      );
-    }
-
-    // Create JWT token
+    // Create JWT token with license info
     const token = await createBuyerToken({
-      accessId: access.id,
-      email: access.email,
-      productType: access.productType,
-      selectedTheme: access.selectedTheme,
-      used: access.used,
+      licenseKeyHash: hashLicenseKey(formattedKey),
+      email: verification.email || "",
+      productType: verification.productType!,
+      uses: verification.uses || 1,
+      test: verification.test || false,
+      purchaseId: verification.purchaseId,
     });
 
-    console.log("Buyer authenticated:", {
-      accessId: access.id,
-      email: access.email,
-      productType: access.productType,
-      selectedTheme: access.selectedTheme,
+    console.log("Buyer authenticated via license key:", {
+      licenseKeyHash: hashLicenseKey(formattedKey),
+      email: verification.email,
+      productType: verification.productType,
+      uses: verification.uses,
+      test: verification.test,
     });
 
     return NextResponse.json({
       success: true,
       token,
-      productType: access.productType,
-      selectedTheme: access.selectedTheme,
-      // Include theme config if pre-customized
-      themeConfig: access.themeConfig,
+      productType: verification.productType,
+      email: verification.email,
+      uses: verification.uses,
+      test: verification.test,
     });
   } catch (error) {
     console.error("Buyer auth error:", error);
@@ -103,10 +106,6 @@ export async function GET(request: Request) {
       );
     }
 
-    // Import dynamically to avoid circular dependencies
-    const { verifyBuyerToken, extractTokenFromHeader } = await import("@/lib/jwt");
-    const { getBuyerAccessById } = await import("@/lib/server");
-
     const token = extractTokenFromHeader(authHeader);
     if (!token) {
       return NextResponse.json(
@@ -123,24 +122,14 @@ export async function GET(request: Request) {
       );
     }
 
-    // Get fresh access data from database
-    const access = await getBuyerAccessById(payload.accessId);
-    if (!access) {
-      return NextResponse.json(
-        { error: "Access not found or expired" },
-        { status: 404 }
-      );
-    }
-
     return NextResponse.json({
       success: true,
-      accessId: access.id,
-      email: access.email,
-      productType: access.productType,
-      selectedTheme: access.selectedTheme,
-      themeConfig: access.themeConfig,
-      used: access.used,
-      expiresAt: access.expiresAt,
+      licenseKeyHash: payload.licenseKeyHash,
+      email: payload.email,
+      productType: payload.productType,
+      uses: payload.uses,
+      test: payload.test,
+      purchaseId: payload.purchaseId,
     });
   } catch (error) {
     console.error("Token verification error:", error);

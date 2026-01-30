@@ -6,11 +6,18 @@
 import { SignJWT, jwtVerify, type JWTPayload } from "jose";
 
 export interface BuyerTokenPayload extends JWTPayload {
-  accessId: string;
+  // License key (hashed for security - we don't store the full key)
+  licenseKeyHash: string;
+  // Email from Gumroad purchase
   email: string;
+  // Product type determined by which product the license belongs to
   productType: "single" | "bundle";
-  selectedTheme: string | null;
-  used: boolean;
+  // Number of times the license has been verified (from Gumroad)
+  uses: number;
+  // Whether this is a test purchase
+  test: boolean;
+  // Purchase ID from Gumroad
+  purchaseId?: string;
 }
 
 /**
@@ -22,6 +29,16 @@ function getJwtSecret(): Uint8Array {
     throw new Error("JWT_SECRET environment variable is not set");
   }
   return new TextEncoder().encode(secret);
+}
+
+/**
+ * Create a simple hash of the license key for storage in JWT
+ * Not cryptographically secure, just for identification
+ */
+export function hashLicenseKey(licenseKey: string): string {
+  // Simple hash - first 8 chars + last 8 chars
+  const cleaned = licenseKey.replace(/-/g, "");
+  return `${cleaned.slice(0, 8)}...${cleaned.slice(-8)}`;
 }
 
 /**
@@ -49,7 +66,7 @@ export async function verifyBuyerToken(token: string): Promise<BuyerTokenPayload
     
     // Validate required fields
     if (
-      !payload.accessId ||
+      !payload.licenseKeyHash ||
       !payload.email ||
       !payload.productType
     ) {

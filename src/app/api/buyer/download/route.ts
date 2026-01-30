@@ -1,11 +1,11 @@
 /**
  * Buyer Download API
- * Generates custom theme ZIP (dual mode: light + dark) and marks access as used
+ * Generates custom theme ZIP (dual mode: light + dark)
+ * License verification is done at auth time via Gumroad API
  */
 
 import { NextResponse } from "next/server";
 import { verifyBuyerToken, extractTokenFromHeader } from "@/lib/jwt";
-import { getBuyerAccessById, markAccessAsUsed } from "@/lib/server";
 import { generateDualThemePackage } from "@/lib/zip-generator";
 import type { ThemeColors, DualThemeConfig } from "@/lib/exporters/types";
 
@@ -19,7 +19,6 @@ interface DownloadRequest {
 /**
  * POST /api/buyer/download
  * Generate theme package and return download URL
- * Marks the buyer access as used (one-time use)
  */
 export async function POST(request: Request) {
   try {
@@ -42,23 +41,6 @@ export async function POST(request: Request) {
       );
     }
 
-    // Get fresh access data from database
-    const access = await getBuyerAccessById(payload.accessId);
-    if (!access) {
-      return NextResponse.json(
-        { error: "Access not found or expired" },
-        { status: 404 }
-      );
-    }
-
-    // Check if already used
-    if (access.used) {
-      return NextResponse.json(
-        { error: "This access has already been used. Each purchase allows one download." },
-        { status: 403 }
-      );
-    }
-
     // Parse request body
     const body = await request.json() as DownloadRequest;
     const { name, displayName, lightColors, darkColors } = body;
@@ -74,35 +56,29 @@ export async function POST(request: Request) {
     const dualConfig: DualThemeConfig = {
       name,
       displayName,
-      author: access.email,
+      author: payload.email,
       light: lightColors,
       dark: darkColors,
     };
 
     console.log("Generating dual theme package for buyer:", {
-      accessId: access.id,
-      email: access.email,
+      licenseKeyHash: payload.licenseKeyHash,
+      email: payload.email,
       themeName: displayName,
+      productType: payload.productType,
     });
 
     // Generate the dual theme package (light + dark)
     const { downloadUrl, expiresAt, size } = await generateDualThemePackage({
       dualConfig,
-      purchaseId: access.purchaseId,
+      purchaseId: payload.purchaseId,
     });
 
     console.log(`Dual package generated: ${(size / 1024).toFixed(2)} KB`);
 
-    // Mark access as used AFTER successful generation
-    const marked = await markAccessAsUsed(access.id);
-    if (!marked) {
-      console.warn("Failed to mark access as used:", access.id);
-      // Don't fail the request, just log the warning
-    }
-
     console.log("Buyer download completed:", {
-      accessId: access.id,
-      email: access.email,
+      licenseKeyHash: payload.licenseKeyHash,
+      email: payload.email,
       themeName: displayName,
       size,
     });

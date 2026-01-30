@@ -9,7 +9,7 @@ import { ThemeCustomizer } from "@/components/theme/theme-customizer";
 import { useThemeGenerator, type ThemeGeneratorState } from "@/hooks/use-theme-generator";
 import { themeRegistry } from "@/lib/themes/registry";
 import type { ThemeId } from "@/lib/themes/types";
-import type { ThemeConfig, ThemeColors } from "@/lib/exporters/types";
+import type { ThemeColors } from "@/lib/exporters/types";
 import { Download, Palette, CheckCircle, Loader2, AlertCircle, ArrowLeft, Sun, Moon } from "lucide-react";
 import type { HSLColor } from "@/lib/color-utils";
 import { BuyerPreview } from "@/components/preview";
@@ -43,13 +43,12 @@ function isValidDownloadUrl(url: string): boolean {
 }
 
 interface BuyerAccessInfo {
-  accessId: string;
+  licenseKeyHash: string;
   email: string;
   productType: "single" | "bundle";
-  selectedTheme: string | null;
-  themeConfig: ThemeConfig | null;
-  used: boolean;
-  expiresAt: number;
+  uses: number;
+  test: boolean;
+  purchaseId?: string;
 }
 
 // Helper to convert generator colors to ThemeColors
@@ -104,15 +103,9 @@ export default function BuyerCustomizePage() {
   // Track if initial load is complete
   const isInitialized = useRef(false);
 
-  // Filter themes based on product type
+  // All users get access to all themes for customization
   const availableThemes = useMemo(() => {
     if (!accessInfo) return [];
-    
-    if (accessInfo.productType === "single" && accessInfo.selectedTheme) {
-      const theme = themeRegistry.find(t => t.id === accessInfo.selectedTheme);
-      return theme ? [theme] : [];
-    }
-    
     return themeRegistry;
   }, [accessInfo]);
 
@@ -120,8 +113,8 @@ export default function BuyerCustomizePage() {
   useEffect(() => {
     if (!loading && accessInfo && !isInitialized.current) {
       isInitialized.current = true;
-      const themeId = (accessInfo.selectedTheme || "deep-space") as ThemeId;
-      setSelectedThemeId(themeId);
+      // Default to deep-space theme
+      setSelectedThemeId("deep-space");
     }
   }, [loading, accessInfo]);
 
@@ -180,20 +173,10 @@ export default function BuyerCustomizePage() {
         }
 
         const data = await response.json();
-        
-        if (data.used) {
-          setError("This access code has already been used. Each code can only be used once for one download.");
-          setLoading(false);
-          return;
-        }
-
         setAccessInfo(data);
         
-        const themeId = (data.selectedTheme || "deep-space") as ThemeId;
-        setSelectedThemeId(themeId);
-        
         // Initialize with dark mode first
-        generator.loadPreset(themeId, "dark");
+        generator.loadPreset("deep-space", "dark");
       } catch {
         localStorage.removeItem("buyerToken");
         router.push("/buyer");
@@ -403,7 +386,7 @@ export default function BuyerCustomizePage() {
             <div>
               <h1 className="font-bold text-lg">Theme Bundle</h1>
               <p className="text-xs text-muted-foreground">
-                {accessInfo?.productType === "bundle" ? "Bonus Custom Theme" : "Theme Customization"}
+                Theme Customization Studio
               </p>
             </div>
           </div>
@@ -461,9 +444,8 @@ export default function BuyerCustomizePage() {
               </CardContent>
             </Card>
 
-            {/* Theme Selector (for bundle users) */}
-            {accessInfo?.productType === "bundle" && (
-              <Card>
+            {/* Theme Selector */}
+            <Card>
                 <CardHeader>
                   <CardTitle>Choose a Theme</CardTitle>
                   <CardDescription>
@@ -502,7 +484,6 @@ export default function BuyerCustomizePage() {
                   </div>
                 </CardContent>
               </Card>
-            )}
           </div>
 
           {/* Right: Customizer */}
