@@ -71,7 +71,7 @@ export async function POST(request: Request) {
     // Generate the dual theme package (light + dark)
     const { downloadUrl, expiresAt, size } = await generateDualThemePackage({
       dualConfig,
-      purchaseId: payload.purchaseId,
+      purchaseId: payload.purchaseId || payload.licenseKeyHash,
     });
 
     console.log(`Dual package generated: ${(size / 1024).toFixed(2)} KB`);
